@@ -1,6 +1,12 @@
-# Assignment 2: Linked Lists and Sets <br> Jake Gendreau <br> CS 121 <br> February 8, 2024
+[//]: # (This script stuff makes the LaTeX math work, so keep it!)
 
-## Program Design
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({ tex2jax: {inlineMath: [['$', '$']]}, messageStyle: "none" });
+</script>
+
+
+# Assignment 2: Linked Lists and Sets <br> Jake Gendreau <br> Program Design <br> February 8, 2024
 
 ### Required Functions
 * readFile() - A function to read the files.

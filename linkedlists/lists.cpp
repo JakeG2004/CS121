@@ -15,37 +15,30 @@ struct node{
 
 typedef struct node* NodePtr;
 
-NodePtr head;
-
-void printList();
-void addToFront(int x);
-void addToEnd(int x);
-void removeFromFront();
+void printList(NodePtr);
+void addToFront(NodePtr&, int x);
+void addToEnd(NodePtr&, int x);
+void removeFromFront(NodePtr&);
+void addSorted(NodePtr&, int);
 
 int main(){
+    NodePtr head;
     //init array
-    int A[] = {1, 2, 3};
-    int nA = sizeof(A) / sizeof(int);
+    addToFront(head, 2);
+    addToFront(head, 3);
 
-    cout << "nA: " << nA << endl;
 
-    cout << "Initial list: " << endl;
+    cout << "Initial list" << endl;
 
-    //add all values from A to linked lists
-    for(int i = 0; i < nA; i++){
-        addToFront(A[i]);
-    }
+    printList(head);
+    addSorted(head, 1);
 
-    while(head){
-        printList();
-        removeFromFront();
-        cout << endl;
-    }
+    cout << "Sorted list" << endl;
 
-    printList();
+    printList(head);
 }
 
-void removeFromFront(){
+void removeFromFront(NodePtr &head){
     NodePtr p = head;
 
     if(p == NULL){
@@ -64,16 +57,16 @@ void removeFromFront(){
 
 }
 
-void printList(){
+void printList(NodePtr head){
     NodePtr p = head;
 
-    while(p != NULL){
+    while(p -> next != NULL){
         cout << p -> data << endl;
         p = p -> next;
     }
 }
 
-void addToFront(int x){
+void addToFront(NodePtr &head, int x){
     NodePtr n = new node;
 
     n -> data = x;
@@ -87,7 +80,7 @@ void addToFront(int x){
     }
 }
 
-void addToEnd(int x){
+void addToEnd(NodePtr &head, int x){
     NodePtr n = new node;
 
     n -> data = x;
@@ -102,5 +95,60 @@ void addToEnd(int x){
         }
 
         p -> next = n;
+    }
+}
+
+/*void addSorted(NodePtr &head, int x){
+    cout << "addSorted" << endl;
+    NodePtr n = new node;
+
+    n -> data = x;
+    n -> next = NULL;
+
+    if(head == NULL){
+        head = n;
+    }
+
+    else{
+        NodePtr p = head;
+
+        while(p != NULL && x < p -> data){
+            cout << "p -> data: " << p -> data << endl;
+            p = p -> next;
+        }
+
+        n -> next = p -> next;
+        p -> next = n;
+    }
+}*/
+
+void addSorted(NodePtr &head, int x){
+    cout << "addSorted" << endl;
+    NodePtr n = new node;
+
+    n -> data = x;
+    n -> next = NULL;
+
+    if(head == NULL){
+        head = n;
+    }
+
+    else{
+        NodePtr curr = NULL;
+        NodePtr prev = head;
+
+        while(curr != NULL && x < curr -> data){
+            cout << "curr -> data: " << curr -> data << endl;
+            prev = curr;
+            curr = curr -> next;
+        }
+
+        if(prev == NULL){
+            n -> next = curr;
+            head = n;
+        } else {
+            prev -> next = n;
+            n -> next = curr;
+        }
     }
 }

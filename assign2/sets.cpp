@@ -189,6 +189,7 @@ void deleteNode(string query, NodePtr &head){ //next doesn't feel like a word an
             //delete old node
             nextNode -> next = NULL;
             delete(nextNode);
+            return;
         }
 
         p = p -> next;

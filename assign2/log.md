@@ -7,6 +7,7 @@
 
 ## Things I encountered while making this program
 
+* Getting used to passing NullPtr by reference was a little confusing, but I got it.
 * Reading files was a little confusing at first, but I got the hang of it.
 * I initially had it reading off line by line, rather than word by word. This worked fine in the first data set, but got me in the second data set.
 * Parsing the second data set for duplicates seemed really daunting at first, until I realized that it would be pretty easy to just check for duplicates as I make the linked lists.

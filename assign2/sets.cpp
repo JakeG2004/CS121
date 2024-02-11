@@ -1,9 +1,11 @@
-/*
-Assignment 2: Sets + linked lists
-Jake Gendreau
-CS 121
-Feb 8, 2024
-*/
+/* sets.cpp
+ *
+ * CS 121.Bolden.........GCC 11.4.0...........Jake Gendreau
+ * Feb 16, 2024 .................My Laptop / Core i9-13900H.............gend0188@vandals.uidaho.edu
+ *
+ * Taking in two data sets, output the intersection and the union between the two.
+ *---------------------------------------------------------------------
+ */
 
 #include <iostream>
 #include <fstream>
@@ -28,6 +30,9 @@ NodePtr findIntersect(NodePtr&, NodePtr&);
 NodePtr concatLists(NodePtr&, NodePtr&);
 
 bool searchList(string, NodePtr&);
+bool isAlpha(char);
+
+string cleanWord(string);
 
 int main(int argc, char* argv[]){
     if(argc != 3){
@@ -130,12 +135,38 @@ void readFile(NodePtr &head, string filename){
 
     //append if word has not already been seen
     while(file >> tmp){
+        tmp = cleanWord(tmp);
         if(!searchList(tmp, head)){
             appendToList(tmp, head);
         }
     }
 
     file.close();
+}
+
+string cleanWord(string inString){
+    int i = 0;
+    int offset = 0;
+    string buffer = "                            ";
+
+    //iterate until null terminator is seen
+    while(inString[i] != '\0'){
+        if(isAlpha(inString[i])){ //buffer keeps track
+            buffer[i - offset] = inString[i];
+        } else { //adjust offset
+            offset++;
+        }
+        i++;
+    }
+
+    return buffer;
+}
+
+bool isAlpha(char tmp){
+    if((tmp >= 'a' && tmp <= 'z') || (tmp >= 'A' && tmp <= 'Z') || tmp == '-' || tmp == '\'')
+        return true;
+
+    return false;
 }
 
 void appendToList(string newData, NodePtr &head){

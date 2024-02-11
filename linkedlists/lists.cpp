@@ -1,8 +1,11 @@
-/*
-list.cpp
-Jake Gendreau
-Feb 2, 2024
-*/
+/* lists.cpp
+ *
+ * CS 121.Bolden.........GCC 11.4.0...........Jake Gendreau
+ * Feb 16, 2024 .................My Laptop / Core i9-13900H.............gend0188@vandals.uidaho.edu
+ *
+ * Taking in two data sets, output the intersection and the union between the two.
+ *---------------------------------------------------------------------
+ */
 
 #include <iostream>
 

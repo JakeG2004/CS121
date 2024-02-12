@@ -15,6 +15,7 @@
 * I made it take command line args so that I could change the data set without having to recompile.
 * I feel like I may have written too many comments, but too many is better than too few.
 * GitHub is a lifesaver. Almost lost a whole bunch of work, but version control had my back.
+* I didn't expect to have to deal with punctuation, but it was fun to use a little bit of c-string logic to handle that.
 
 ## Things I encountered making the program design
 * LaTeX is really confusing, but fortunately, markdown supports all of the same math expressions, so I have been using that instead.

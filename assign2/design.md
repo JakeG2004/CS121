@@ -37,11 +37,14 @@ $D1 \cup D2 = D1 + D2 - (D1 \cap D2)$
 * findIntersect() - A function to find the intersect between two lists.
 * subtractIntersect() - A function that can subtract the intersect from two lists.
 * concatLists() - A function that can combine two lists.
+* isAlpha() - Determine whether an input character is part of the alphabet or not
+* cleanWord() - Remove punctuation from an input word
 
 ## readFile(file, head)
 1. Each infile will have its own linked list.
 2. Read off each word of the file.
-3. Call searchList() to see if the word already exists in the linked list.
+3. Set the word equal to cleanWord(word)
+4. Call searchList() to see if the word already exists in the linked list.
     * If it does already exist in the list, do not append the current word to the list.
     * Otherwise, use appendToList() the current word to the list.
 
@@ -85,3 +88,14 @@ $D1 \cup D2 = D1 + D2 - (D1 \cap D2)$
 4. Have p = head2.
 5. Have p traverse through head2, appending to union using appendToList() as it goes.
 6. Return union
+
+## isAlpha(char)
+1. Test if character >= 'a' and <= 'z' or >= 'A' and <= 'Z'
+2. Return true if it is, false if it isn't
+
+## cleanWord(string)
+1. Take in a string
+2. Make a buffer string
+3. Iterate through the characters of the string
+4. Append to buffer if isAlpha(character) is true
+5. return buffer

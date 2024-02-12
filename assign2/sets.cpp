@@ -146,16 +146,11 @@ void readFile(NodePtr &head, string filename){
 string cleanWord(string inString){
     int offset = 0;
     string buffer;
-
-    //make buffer same length as inString
-    for (int i = 0; inString[i] != '\0'; i++){
-        buffer.append(" ");
-    }
     
     //write characters to buffer, ignoring punctuation
     for(int i = 0; inString[i] != '\0'; i++){
         if(isAlpha(inString[i])){
-            buffer[i - offset] = inString[i];
+            buffer += (inString[i]);
         } else {
             offset++;
         }

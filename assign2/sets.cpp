@@ -1,7 +1,7 @@
 /* sets.cpp
  *
  * CS 121.Bolden.........GCC 11.4.0...........Jake Gendreau
- * Feb 16, 2024 .................My Laptop / Core i9-13900H.............gend0188@vandals.uidaho.edu
+ * Feb 16, 2024 .................Pop!_OS 22.04 / Core i9-13900H.............gend0188@vandals.uidaho.edu
  *
  * Taking in two data sets, output the intersection and the union between the two.
  *---------------------------------------------------------------------
@@ -128,7 +128,6 @@ NodePtr concatLists(NodePtr& d1Head, NodePtr& d2Head){
 
 void readFile(NodePtr &head, string filename){
     string tmp;
-
     fstream file;
 
     file.open(filename.c_str());
@@ -145,24 +144,27 @@ void readFile(NodePtr &head, string filename){
 }
 
 string cleanWord(string inString){
-    int i = 0;
     int offset = 0;
-    string buffer = "                            ";
+    string buffer;
 
-    //iterate until null terminator is seen
-    while(inString[i] != '\0'){
-        if(isAlpha(inString[i])){ //buffer keeps track
+    //make buffer same length as inString
+    for (int i = 0; inString[i] != '\0'; i++){
+        buffer.append(" ");
+    }
+    
+    //write characters to buffer, ignoring punctuation
+    for(int i = 0; inString[i] != '\0'; i++){
+        if(isAlpha(inString[i])){
             buffer[i - offset] = inString[i];
-        } else { //adjust offset
+        } else {
             offset++;
         }
-        i++;
     }
 
     return buffer;
 }
 
-bool isAlpha(char tmp){
+bool isAlpha(char tmp){ //isAlpha with extras!
     if((tmp >= 'a' && tmp <= 'z') || (tmp >= 'A' && tmp <= 'Z') || tmp == '-' || tmp == '\'')
         return true;
 

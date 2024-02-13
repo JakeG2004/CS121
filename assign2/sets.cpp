@@ -130,7 +130,7 @@ void readFile(NodePtr &head, string filename){
     string tmp;
     fstream file;
 
-    file.open(filename.c_str());
+    file.open(filename);
 
     //append if word has not already been seen
     while(file >> tmp){
@@ -144,15 +144,12 @@ void readFile(NodePtr &head, string filename){
 }
 
 string cleanWord(string inString){
-    int offset = 0;
     string buffer;
     
     //write characters to buffer, ignoring punctuation
     for(int i = 0; inString[i] != '\0'; i++){
         if(isAlpha(inString[i])){
             buffer += (inString[i]);
-        } else {
-            offset++;
         }
     }
 

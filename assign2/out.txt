@@ -1,6 +1,12 @@
-Script started on 2024-02-08 21:19:57-08:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="80" LINES="24"]
-[?2004h]0;jake@pop-os: ~/Documents/Schoolwork/CS121/assign2[01;32mjake@pop-os[00m:[01;34m~/Documents/Schoolwork/CS121/assign2[00m$ ./a.out data/s1.txt data/s2.tx t
-[?2004lIntersection:
+SETS.CPP
+CS 121
+JAKE GENDREAU
+FEB 15, 2024
+
+Script started on 2024-02-15 13:33:59-08:00 [TERM="xterm-256color" TTY="/dev/pts/1" COLUMNS="169" LINES="13"]
+jake@pop-os: ~/Documents/Schoolwork/CS121/assign2$ ./a.out data/s1.txt data/s2.txt
+
+Intersection:
 April
 May
 June
@@ -23,15 +29,16 @@ October
 November
 December
 
-[?2004h]0;jake@pop-os: ~/Documents/Schoolwork/CS121/assign2[01;32mjake@pop-os[00m:[01;34m~/Documents/Schoolwork/CS121/assign2[00m$ ./a.out data/s1.txt data/s2.txt[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C2.txt [K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cl2.txt[A]0;jake@pop-os: ~/Documents/Schoolwork/CS121/assign2[01;32mjake@pop-os[00m:[01;34m~/Documents/Schoolwork/CS121/assign2[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C1.txt data/l2.txt [K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cl1.txt data/l2.txt[A]0;jake@pop-os: ~/Documents/Schoolwork/CS121/assign2[01;32mjake@pop-os[00m:[01;34m~/Documents/Schoolwork/CS121/assign2[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C
-
-[?2004lIntersection:
+jake@pop-os: ~/Documents/Schoolwork/CS121/assign2$ ./a.out data/l1.txt data/l2.txt
+
+Intersection:
 It
 was
 a
 dark
 and
 stormy
+night
 the
 rain
 in
@@ -45,11 +52,10 @@ that
 along
 
 Union:
-night;
 fell
 torrents-except
 occasional
-intervals,
+intervals
 when
 checked
 violent
@@ -58,13 +64,13 @@ wind
 which
 swept
 streets
-(for
+for
 London
 our
 scene
-lies),
+lies
 rattling
-housetops,
+housetops
 fiercely
 agitating
 scanty
@@ -72,7 +78,7 @@ flame
 lamps
 struggled
 against
-darkness.
+darkness
 It
 was
 a
@@ -81,6 +87,8 @@ and
 stormy
 night
 Everyone
+at
+the
 wing-ding
 They
 weren't
@@ -88,6 +96,7 @@ type
 So
 they
 went
+up
 on
 train
 bridge
@@ -95,15 +104,17 @@ Where
 weather
 howling
 And
-oh,
+oh
 my
 When
+that
 comes
 rolling
+by
 No
 paper
 thin
-walls,
+walls
 no
 folks
 above
@@ -114,10 +125,13 @@ hear
 The
 crazy
 cries
+of
 love
 were
-laughing,
+laughing
 dancing
+in
+rain
 knew
 their
 strong
@@ -126,6 +140,7 @@ far
 off
 whistle
 hoping
+it
 going
 to
 be
@@ -145,6 +160,7 @@ hanging
 Outside
 shade
 streetlight
+is
 clanging
 smile
 ear
@@ -154,7 +170,7 @@ cream
 melting
 piece
 pie
-Oh,
+Oh
 Every
 kiss
 sweet
@@ -164,6 +180,7 @@ tandem
 As
 come
 a-rumbling
+along
 sang
 lover's
 song
@@ -171,6 +188,7 @@ wild
 abandon
 
 [?2004h]0;jake@pop-os: ~/Documents/Schoolwork/CS121/assign2[01;32mjake@pop-os[00m:[01;34m~/Documents/Schoolwork/CS121/assign2[00m$ exit
-[?2004lexit
+[?2004l
+exit
 
-Script done on 2024-02-08 21:20:26-08:00 [COMMAND_EXIT_CODE="0"]
+Script done on 2024-02-15 13:34:24-08:00 [COMMAND_EXIT_CODE="0"]

@@ -127,16 +127,16 @@ NodePtr concatLists(NodePtr& d1Head, NodePtr& d2Head){
 }
 
 void readFile(NodePtr &head, string filename){
-    string tmp;
+    string word;
     fstream file;
 
     file.open(filename);
 
     //append if word has not already been seen
-    while(file >> tmp){
-        tmp = cleanWord(tmp);
-        if(!searchList(tmp, head)){
-            appendToList(tmp, head);
+    while(file >> word){
+        word = cleanWord(word);
+        if(!searchList(word, head)){
+            appendToList(word, head);
         }
     }
 
@@ -156,8 +156,8 @@ string cleanWord(string inString){
     return buffer;
 }
 
-bool isAlpha(char tmp){ //isAlpha with extras!
-    if((tmp >= 'a' && tmp <= 'z') || (tmp >= 'A' && tmp <= 'Z') || tmp == '-' || tmp == '\'')
+bool isAlpha(char curChar){ //isAlpha with extras!
+    if((curChar >= 'a' && curChar <= 'z') || (curChar >= 'A' && curChar <= 'Z') || curChar == '-' || curChar == '\'')
         return true;
 
     return false;

@@ -7,7 +7,11 @@ Started 6:15 PM Feb 26 <br>
 FEB 27 2:45 PM: <br>
 Im just gonna restart with a clean slate and try to implement it myself rather than following the provided program description <br>
 4:15 it all works now. Valgrind detects no leaks and I haven't had it crash. Now i get to make it pretty. <br>
+4:57 beautification done. I think ill call it a day here. <br>
 
 ## struggles:
 pop keeps throwing errors for me
 turns out it was not pop. It's peek. I learned that through GDB. Handy piece of software that one is
+
+## what did i learn:
+valgrind and gdb <br>

@@ -61,6 +61,9 @@ class Stack{
 
         //return count of the number of nodes in the list
         int size();
+
+        //delete list
+        void deleteList();
 };
 
 #endif

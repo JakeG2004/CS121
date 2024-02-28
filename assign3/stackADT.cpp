@@ -53,8 +53,7 @@ char Stack::pop(){
 
 //return the data in the first node
 char Stack::peek(){
-    if(count > 0)
-        return head -> data;
+    return head -> data;
 }
 
 //print list
@@ -84,4 +83,16 @@ bool Stack::isInList(char x){
 
 int Stack::size(){
     return count;
+}
+
+void Stack::deleteList(){
+    nodePtr p;
+
+    while(head != NULL){
+        p = head;
+        head = head -> next;
+        delete(p);
+    }
+
+    delete(head);
 }

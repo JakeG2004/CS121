@@ -33,6 +33,7 @@ bool isInString(char, string);
 
 int main()
 {
+
     //prompt user
     string infix = getInfix();
 
@@ -49,13 +50,13 @@ int main()
 
 void inToPost(string &infix)
 {
-    //init needed variables
-    char token;
-    string postfix;
-
     //init stack
     Stack stack = Stack();
     initStack(stack);
+
+    //init needed variables
+    char token;
+    string postfix;
 
     //for every character in the infix string
     for(int i = 0; infix[i] != '\0'; i++)

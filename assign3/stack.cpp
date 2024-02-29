@@ -182,12 +182,6 @@ void getInfix(Stack &stack)
     {
         buffer = "";
 
-        //set i to where it should be
-        if(offset > 0){
-            offset = 0;
-            i--;
-        }
-
         //handle non-numbers
         if(!isNum(string(1, tmpString[i])))
         {
@@ -195,16 +189,19 @@ void getInfix(Stack &stack)
         }
 
         //group numbers together
-        while(isNum(string(1, tmpString[i])))
+        while(isNum(string(1, tmpString[i])) && tmpString[i] != '\0')
         {
             buffer += tmpString[i];
 
-            //check for out of bounds
-            if(tmpString[i+1] == '\0')
-                break;
-
+            //iterate through rest of list
             i++;
             offset++;
+        }
+
+        //set i to where it should be
+        if(offset > 0){
+            offset = 0;
+            i--;
         }
 
         //write it to the stack

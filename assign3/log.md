@@ -10,7 +10,7 @@ Im just gonna restart with a clean slate and try to implement it myself rather t
 4:57 beautification done. I think ill call it a day here. <br>
 6:23 PM Feb 28 <br>
 The program only works with characters at the moment, which is great if every number is 0-9, but I need to make it work with strings instead <br>
-with a bit of struggle later, and mis-use of a new stack, it works with strings. Yippe!!<br>
+9:07 with a bit of struggle later, and mis-use of a new stack, it works with strings. Yippe!!<br>
 
 ## struggles:
 pop keeps throwing errors for me

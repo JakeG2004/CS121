@@ -56,6 +56,8 @@ void inToPost(Stack &infix)
     string token;
     string postfix;
 
+    infix.print();
+
     //for every character in the infix string
     while(infix.size() > 0)
     {
@@ -65,7 +67,7 @@ void inToPost(Stack &infix)
         if(token == "(")
             stack.pushFront("(");
 
-        //if token is an operand, append it and move on
+        //if token is an number, append it and move on
         else if(isNum(token))
             postfix += token;
 
@@ -204,6 +206,8 @@ void getInfix(Stack &stack)
         //write it to the stack
         stack.pushBack(buffer);
     }
+
+    stack.pushBack(")");
 }
 
 string cleanExpression(string expression)
@@ -227,11 +231,8 @@ string cleanExpression(string expression)
     if(buffer.size() == 0)
     {
         cout << "Invalid statement." << endl;
-        return("quit");
+        exit(-1);
     }
-
-    //add a ')' to the end of the infix expression
-    buffer += ')';
 
     return buffer;
 }

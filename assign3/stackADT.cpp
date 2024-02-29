@@ -58,6 +58,8 @@ void Stack::pushBack(string x){
         }
         n->next = p;
     }
+
+    count++;
 }
 
 string Stack::pop()

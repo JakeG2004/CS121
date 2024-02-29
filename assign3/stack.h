@@ -8,12 +8,14 @@ Feb 26, 2024
 #ifndef STACK_H
 #define STACK_H
 
+using namespace std;
+
 #include <iostream>
 
 class Stack{
     private:
         struct node{
-            char data;
+            string data;
             node* next;
         };
         typedef node* nodePtr;
@@ -43,21 +45,24 @@ class Stack{
         }
 
         //add node onto the front of the list
-        void push(char x);
+        void pushFront(string x);
 
-        char pop();
+        //add node onto the front of the list
+        void pushBack(string x);
+
+        string pop();
 
         //delete the first node found with the value x if one exists
-        void deleteNode(char x);
+        void deleteNode(string x);
 
         //return the first node found in the list
-        char peek();
+        string peek();
 
         //output the values in the nodes, one char per line
         void print();
 
         //return true if there is a node with the value x
-        bool isInList(char x);
+        bool isInList(string x);
 
         //return count of the number of nodes in the list
         int size();

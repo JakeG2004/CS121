@@ -16,7 +16,7 @@
 using namespace std;
 
 //prototypes
-string getInfix();
+void getInfix(Stack&);
 string cleanExpression(string);
 
 int getPrecedence(char);
@@ -24,55 +24,53 @@ int getPrecedence(char);
 void initStack(Stack&);
 
 void handleClosedParens(Stack&, string&);
-void handleOperators(Stack&, char, string&);
-void inToPost(string&);
+void handleOperators(Stack&, string, string&);
+void inToPost(Stack&);
 
-bool isNum(char);
-bool isGreaterPrecedence(char, char);
+bool isNum(string);
+bool isGreaterPrecedence(string, string);
 bool isInString(char, string);
 
 int main()
 {
 
     //prompt user
-    string infix = getInfix();
-
+    Stack infix = Stack();
+    getInfix(infix);
+    
     //repeat until quit keyword is met
-    while(infix != "quit")
+    while(true)
     {
         inToPost(infix);
-        infix = getInfix();
+        getInfix(infix);
     }
-
-    cout << "Quitting Program..." << endl;
-
 }
 
-void inToPost(string &infix)
+void inToPost(Stack &infix)
 {
     //init stack
     Stack stack = Stack();
     initStack(stack);
 
     //init needed variables
-    char token;
+    string token;
     string postfix;
 
     //for every character in the infix string
-    for(int i = 0; infix[i] != '\0'; i++)
+    while(infix.size() > 0)
     {
-        token = infix[i];
+        token = infix.pop();
 
         //handle open parens
-        if(token == '(')
-            stack.push('(');
+        if(token == "(")
+            stack.pushFront("(");
 
         //if token is an operand, append it and move on
         else if(isNum(token))
             postfix += token;
 
         //handle closed parens
-        else if(token == ')' && stack.size() > 0)
+        else if(token == ")" && stack.size() > 0)
             handleClosedParens(stack, postfix);
 
         //handle operators
@@ -88,46 +86,51 @@ void inToPost(string &infix)
     cout << "Converted to Postfix: " << postfix << endl;
 }
 
-void handleOperators(Stack &stack, char token, string &postfix)
+void handleOperators(Stack &stack, string token, string &postfix)
 {
-    char tmpChar;
+    string stackToken;
 
     //iterate through whole stack, organizing operators as it goes
     while(stack.size() > 0 && isGreaterPrecedence(stack.peek(), token))
     {
-        tmpChar = stack.pop();
-        if(tmpChar != '(')
-            postfix += tmpChar;
+        stackToken = stack.pop();
+        if(stackToken != "(")
+            postfix += stackToken;
     }
-    stack.push(token);
+
+    stack.pushFront(token);
 }
 
 void handleClosedParens(Stack &stack, string &postfix)
 {
-    char tmpChar = stack.pop();
+    string stackToken = stack.pop();
 
     //add everything in the stack on a closed parens
-    while(tmpChar != '(')
+    while(stackToken != "(")
     {
-        postfix += tmpChar;
+        postfix += stackToken;
         if(stack.size() > 0)
-            tmpChar = stack.pop();
+            stackToken = stack.pop();
     }
 }
 
-int getPrecedence(char op)
+int getPrecedence(string op)
 {
+    if(op.size() != 1){
+        cout << "ERROR: Invalid size in getPrecedence" << endl;
+        exit(-1);
+    }
     //use PEMDAS to define priority
-    if(op == '/' || op == '*')
+    if(op[0] == '/' || op[0] == '*')
         return 2;
 
-    if(op == '+' || op == '-')
+    if(op[0] == '+' || op[0] == '-')
         return 1;
 
     return 0;
 }
 
-bool isGreaterPrecedence(char stackChar, char token)
+bool isGreaterPrecedence(string stackChar, string token)
 {
     //grab precedence values
     int tokenVal = getPrecedence(token);
@@ -137,34 +140,70 @@ bool isGreaterPrecedence(char stackChar, char token)
     return(stackVal >= tokenVal);
 }
 
-bool isNum(char token)
+bool isNum(string token)
 {
-    //true if token is a num, false otherwise
-    if(token >= '0' && token <= '9')
-        return true;
-    return false;
+    for(int i = 0; token[i] != '\0'; i++)
+    {
+        //true if token is a num, false otherwise
+        if(token[i] < '0' || token[i] > '9')
+            return false;
+    }
+
+    return true;
 }
 
 void initStack(Stack &stack)
 {
-    stack.push('(');
+    stack.pushFront("(");
 }
 
-string getInfix()
+void getInfix(Stack &stack)
 {
     string tmpString;
     string buffer;
+    int offset = true;
 
     //prompt the user and get the expression
     cout << "Enter your Infix expression or type \"quit\" to exit: ";
-    getline(cin, tmpString);
 
-    //return if quit
+    //get the string
+    getline(cin, tmpString);
     if(tmpString == "quit"){
-        return(tmpString);
+        cout << "Exiting program..." << endl;
+        exit(0);
     }
 
-    return(cleanExpression(tmpString));
+    //clean it
+    tmpString = cleanExpression(tmpString);
+
+    //create substrings and add them to the temp stack
+    for(int i = 0; tmpString[i] != '\0'; i++)
+    {
+        buffer = "";
+
+        //set i to where it should be
+        if(offset > 0){
+            offset = 0;
+            i--;
+        }
+
+        //handle non-numbers
+        if(!isNum(string(1, tmpString[i])))
+        {
+            buffer = tmpString[i];
+        }
+
+        //group numbers together
+        while(isNum(string(1, tmpString[i])))
+        {
+            buffer += tmpString[i];
+            i++;
+            offset++;
+        }
+
+        //write it to the stack
+        stack.pushBack(buffer);
+    }
 }
 
 string cleanExpression(string expression)

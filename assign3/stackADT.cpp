@@ -1,6 +1,6 @@
 /*
 stackADT.cpp
-Class for a linked list of characters
+Class for a linked list of strings
 */
 
 #include <iostream>
@@ -10,7 +10,7 @@ Class for a linked list of characters
 using namespace std;
 
 //add an item to the front of the list
-void Stack::push(char x)
+void Stack::pushFront(string x)
 {
     nodePtr n;
 
@@ -42,7 +42,25 @@ void Stack::push(char x)
     count++;
 }
 
-char Stack::pop()
+void Stack::pushBack(string x){
+    nodePtr p = new node();
+    p->next = NULL;
+    p->data = x;
+
+    if (head == NULL) {
+        // If the list is empty, make the new node the head
+        head = p;
+    } else {
+        // Otherwise, find the last node and update its next pointer
+        nodePtr n = head;
+        while (n->next != NULL) {
+            n = n->next;
+        }
+        n->next = p;
+    }
+}
+
+string Stack::pop()
 {
     nodePtr n = head;
 
@@ -54,7 +72,7 @@ char Stack::pop()
     }
 
     //store data to return
-    char returnChar = n -> data;
+    string returnChar = n -> data;
 
     //reposition head
     head = head -> next;
@@ -70,7 +88,7 @@ char Stack::pop()
 }
 
 //return the data in the first node
-char Stack::peek()
+string Stack::peek()
 {
     //error checking
     if(count == 0)
@@ -98,7 +116,7 @@ void Stack::print()
 }
 
 //identify if element is in list
-bool Stack::isInList(char query)
+bool Stack::isInList(string query)
 {
     nodePtr p = head;
 

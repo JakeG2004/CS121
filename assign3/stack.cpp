@@ -56,8 +56,6 @@ void inToPost(Stack &infix)
     string token;
     string postfix;
 
-    infix.print();
-
     //for every character in the infix string
     while(infix.size() > 0)
     {
@@ -200,6 +198,11 @@ void getInfix(Stack &stack)
         while(isNum(string(1, tmpString[i])))
         {
             buffer += tmpString[i];
+
+            //check for out of bounds
+            if(tmpString[i+1] == '\0')
+                break;
+
             i++;
             offset++;
         }

@@ -69,7 +69,7 @@ void inToPost(Stack &infix)
 
         //if token is an number, append it and move on
         else if(isNum(token))
-            postfix = postfix + token + " ";
+            postfix += token + " ";
 
         //handle closed parens
         else if(token == ")" && stack.size() > 0)
@@ -97,7 +97,7 @@ void handleOperators(Stack &stack, string token, string &postfix)
     {
         stackToken = stack.pop();
         if(stackToken != "(")
-            postfix = postfix + stackToken + " ";
+            postfix += stackToken + " ";
     }
 
     stack.pushFront(token);
@@ -110,8 +110,8 @@ void handleClosedParens(Stack &stack, string &postfix)
     //add everything in the stack on a closed parens
     while(stackToken != "(")
     {
-        postfix += stackToken;
-        postfix += " ";
+        postfix += stackToken + " ";
+
         if(stack.size() > 0)
             stackToken = stack.pop();
     }

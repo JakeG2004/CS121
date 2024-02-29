@@ -16,7 +16,7 @@
 using namespace std;
 
 //prototypes
-void getInfix(Stack&);
+bool getInfix(Stack&);
 string cleanExpression(string);
 
 int getPrecedence(char);
@@ -36,14 +36,17 @@ int main()
 
     //prompt user
     Stack infix = Stack();
-    getInfix(infix);
     
     //repeat until quit keyword is met
-    while(true)
+    while(getInfix(infix))
     {
         inToPost(infix);
         getInfix(infix);
     }
+
+    cout << "Exiting Program..." << endl;
+
+    infix.deleteList();
 }
 
 void inToPost(Stack &infix)
@@ -81,6 +84,7 @@ void inToPost(Stack &infix)
 
     //free the stack
     stack.deleteList();
+    infix.deleteList();
 
     //print the converted expression
     cout << "Converted to Postfix: " << postfix << endl;
@@ -158,7 +162,7 @@ void initStack(Stack &stack)
     stack.pushFront("(");
 }
 
-void getInfix(Stack &stack)
+bool getInfix(Stack &stack)
 {
     string tmpString;
     string buffer;
@@ -169,13 +173,14 @@ void getInfix(Stack &stack)
 
     //get the string
     getline(cin, tmpString);
-    if(tmpString == "quit"){
-        cout << "Exiting program..." << endl;
-        exit(0);
-    }
 
     //clean it
     tmpString = cleanExpression(tmpString);
+
+    //error checking
+    if(tmpString == "quit"){
+        return 0;
+    }
 
     //create substrings and add them to the temp stack
     for(int i = 0; tmpString[i] != '\0'; i++)
@@ -209,10 +214,16 @@ void getInfix(Stack &stack)
     }
 
     stack.pushBack(")");
+
+    return 1;
 }
 
 string cleanExpression(string expression)
 {
+    //check for quit
+    if(expression == "quit")
+        return("quit");
+
     string buffer;
 
     //define valid characters
@@ -232,7 +243,7 @@ string cleanExpression(string expression)
     if(buffer.size() == 0)
     {
         cout << "Invalid statement." << endl;
-        exit(-1);
+        return("quit");
     }
 
     return buffer;

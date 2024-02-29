@@ -97,7 +97,7 @@ void handleOperators(Stack &stack, string token, string &postfix)
     {
         stackToken = stack.pop();
         if(stackToken != "(")
-            postfix + postfix + stackToken + " ";
+            postfix = postfix + stackToken + " ";
     }
 
     stack.pushFront(token);

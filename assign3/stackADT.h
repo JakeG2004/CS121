@@ -68,7 +68,7 @@ class Stack{
         int size();
 
         //delete list
-        void deleteList();
+        void deleteStack();
 };
 
 #endif

@@ -1,12 +1,32 @@
+\lstdefinestyle{cppstyle}{
+  language=C++,
+  basicstyle=\ttfamily\small\color{black}, % Set text color to black
+  keywordstyle=\color{black}\bfseries,
+  commentstyle=\color{black},
+  stringstyle=\color{black},
+  showstringspaces=false,
+  breaklines=false,  % Turn off line wrapping
+  frame=lines,
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  numbersep=5pt,
+  tabsize=2,
+  backgroundcolor=\color{white}, % Set background color to white
+}
+
+\begin{lstlisting}[style=cppstyle, caption={stack.cpp}]
 /*
-*-------------------------------------------------------------------------------
+*-----------------------------------------------------------
 *Stack.cpp
 *
-*CS121.Bolden......................GCC 11.4.0......................Jake Gendreau
-*Feb 27, 2024.....Pop!_OS 22.04 / Core i9-13900H.....gend0188@vandals.uidaho.edu
+*CS121.Bolden............GCC 11.4.0............Jake Gendreau
+*Feb 27, 2024....Pop!_OS 22.04 / Intel Core i9-13900H.......
 *
-*Use a stack to convert a given infix expression to a postfix expression
-*-------------------------------------------------------------------------------
+*..............gend0188@vandals.uidaho.edu..................
+*
+*Use a stack to convert a given infix 
+*expression to a postfix expression
+*-----------------------------------------------------------
 */
 
 //dependencies
@@ -258,3 +278,4 @@ bool isInString(char query, string string)
     }
     return false;
 }
+\end{lstlisting}

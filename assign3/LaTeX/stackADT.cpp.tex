@@ -1,3 +1,20 @@
+\lstdefinestyle{cppstyle}{
+  language=C++,
+  basicstyle=\ttfamily\small\color{black}, % Set text color to black
+  keywordstyle=\color{black}\bfseries,
+  commentstyle=\color{black},
+  stringstyle=\color{black},
+  showstringspaces=false,
+  breaklines=false,  % Turn off line wrapping
+  frame=lines,
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  numbersep=5pt,
+  tabsize=2,
+  backgroundcolor=\color{white}, % Set background color to white
+}
+
+\begin{lstlisting}[style=cppstyle, caption={stackADT.cpp}]
 /*
 stackADT.cpp
 Class for a linked list of strings
@@ -156,3 +173,5 @@ void Stack::deleteStack()
     //finally, delete head
     delete(head);
 }
+
+\end{lstlisting}

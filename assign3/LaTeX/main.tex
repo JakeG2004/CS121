@@ -1,0 +1,220 @@
+\documentclass{article}
+
+\title{Assignment 3: Stacks}
+\author{Jake Gendreau}
+\date{March 1, 2024}
+
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{verbatim}
+
+\lstdefinestyle{cppstyle}{
+  language=C++,
+  basicstyle=\ttfamily\small\color{black}, % Set text color to black
+  keywordstyle=\color{black}\bfseries,
+  commentstyle=\color{black},
+  stringstyle=\color{black},
+  showstringspaces=false,
+  breaklines=false,  % Turn off line wrapping
+  frame=lines,
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  numbersep=5pt,
+  tabsize=2,
+  backgroundcolor=\color{white}, % Set background color to white
+}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\newpage
+
+\section{Program Design}
+    \subsection{Time Estimate}
+    I estimate that implementing this program will take 2-4 hours. The logic for conversion is provided in the assignment, making it mainly a task of input processing and stack implementation.
+    
+    \subsection{Data Structures}
+        \subsubsection{Stack}
+        The stack is implemented in a separate file through the use of \texttt{stackADT.h} and its corresponding implementation, \texttt{stackADT.cpp}. It uses a linked list under the hood. All of the processing logic is done using a stack
+    
+        \textbf{Stack functions:}
+        \begin{itemize}
+            \item \texttt{pushFront()} - Adds an item to the top of the stack.
+            \item \texttt{pop()} - Returns and deletes the top item from the stack.
+            \item \texttt{peek()} - Returns the top item from the stack.
+            \item \texttt{print()} - Prints the stack, top to bottom.
+            \item \texttt{size()} - Returns the size of the stack.
+            \item \texttt{deleteList()} - Deletes the stack.
+        \end{itemize}
+    
+        \subsubsection{Queue}
+        The queue is embedded in \texttt{stackADT.h} and \texttt{stackADT.cpp}, by the inclusion of one more function. All of the input processing and handling is done using a queue.
+        
+        \textbf{Queue Function}:
+        \begin{itemize}
+            \item \texttt{pushBack()} - Adds an item to the bottom of the stack.
+        \end{itemize}
+    
+    \subsection{Program}
+        \subsubsection{\texttt{main()}}
+        \begin{enumerate}
+            \item Make a queue called infix for input
+            \item Get infix using \texttt{getInfix(queue)}
+            \item While \texttt{getInfix(infix)} is true
+                \begin{enumerate}
+                    \item Run \texttt{inToPost(infix)}
+                \end{enumerate}
+            \item Quit the program
+        \end{enumerate}
+
+        \subsubsection{Functions}
+        \begin{itemize}
+            \item{\texttt{inToPost(infix)}}
+                \begin{enumerate}
+                    \item Make stack
+                    \item For every token in infix
+                    \begin{enumerate}
+                        \item If the token is '(', push the token onto the stack
+                        \item If the token is a number, push the token onto the stack
+                        \item If the token is ')', call \texttt{handleClosedParens()}
+                        \item If the token is an operator, call \texttt{handleOperators()}
+                    \end{enumerate}
+                    \item Delete the stack
+                    \item Delete the infix Queue
+                    \item Print the postfix expression
+                \end{enumerate}
+
+            \item{\texttt{handleOperators(stack, token, postfix)}}
+                \begin{enumerate}
+                    \item While \texttt{stack.peek()} has greater precedence than the token:
+                    \begin{enumerate}
+                        \item If \texttt{stack.pop()} is not '(', add it to the postfix expression
+                    \end{enumerate}
+                    \item Push token to the stack
+                \end{enumerate}
+
+            \item{\texttt{handleClosedParens(stack, postfix)}}
+                \begin{enumerate}
+                    \item Set stackToken = \texttt{stack.pop()}
+                    \item While stackToken is not '('
+                    \begin{enumerate}
+                        \item Add stackToken to the postfix expression
+                        \item If \texttt{stack.size()} is greater than 0, stackToken = \texttt{stack.pop()}
+                    \end{enumerate}
+                \end{enumerate}
+
+            \item{\texttt{getPrecedence(operator)}}
+                \begin{enumerate}
+                    \item Check that the operator is valid, error out if not
+                    \item Using PEMDAS, evaluate and return the precedence of the operator, where * and / have the highest, then + and - have the lowest
+                \end{enumerate}
+
+            \item{\texttt{isGreaterPrecedence(stackOperator, token)}}
+                \begin{enumerate}
+                    \item Store the stack precedence and the token precedence using \texttt{getPrecedence()}
+                    \item Return true if the stack precedence is greater than the token precedence
+                    \item Return false otherwise
+                \end{enumerate}
+
+            \item{\texttt{isNum(token)}}
+                \begin{enumerate}
+                    \item For each character in token
+                    \begin{enumerate}
+                        \item Using character value comparison, if token $< 0$ or token $> 9$, return false
+                    \end{enumerate}
+                    \item return true otherwise
+                \end{enumerate}
+
+            \item{\texttt{getInfix(queue)}}
+                \begin{enumerate}
+                    \item Make string buffer, string tmp, and bool offset
+                    \item Prompt for input
+                    \item Use getline to store the input in tmp
+                    \item Call \texttt{cleanInput(tmp)} to clean tmp
+                    \item If tmp is "quit", return a 0 to main
+                    \item For every character in tmp
+                        \begin{enumerate}
+                            \item Empty the buffer string
+                            \item While the current character is a number (using \texttt{isNum()})
+                                \begin{enumerate}
+                                    \item Add it to the buffer
+                                    \item Set offset to true
+                                    \item go the the next character
+                                \end{enumerate}  
+                        \item If offset is true
+                            \begin{enumerate}
+                                \item Set offset to false
+                                \item Go to the previous character
+                            \end{enumerate}
+                        \item Store buffer at the end of the queue
+                    \end{enumerate}
+                    \item Store a ')' at the end of the infix expression
+                    \item Return a 1 to main
+                \end{enumerate}
+
+            \item{\texttt{cleanExpression(expression)}}
+                \begin{enumerate}
+                    \item If expression is "quit", return "quit"
+                    \item Make string buffer
+                    \item Make string containing all of the valid characters
+                    \item For every character in expression
+                        \begin{enumerate}
+                            \item If character is in the string of valid characters (using \texttt{isInString()},
+                            add it to the buffer
+                        \end{enumerate}
+                    \item If the size of the buffer is 0, print an error and return "quit"
+                    \item Otherwise, return buffer
+                \end{enumerate}
+
+            \item{\texttt{isInString(query, string)}}
+                \begin{enumerate}
+                    \item For every character in the string
+                        \begin{enumerate}
+                            \item If query = the current character, return true
+                        \end{enumerate}
+                    \item Return false
+                \end{enumerate}
+
+                
+        \end{itemize}
+
+        
+
+    \newpage
+
+    
+\section{Program Log}
+    \subsection{Time Requirements}
+    This program took me about 9 hours to complete. However, the character implementation only took about 5 hours. Getting multi-character numbers to work took a while extra, since I had to convert the stack and queue to work with strings, along with all of the code involved in the logic.
+
+    \subsection{Things I encountered}
+    \begin{itemize}
+        \item I didn't understand how the provided process works until I tried to implement it from a more vague set of instructions. Once I understood it, implementing it was significantly easier.
+        \item I initially had it reading character by character, which does work for the provided problems, but I wanted to make it work with all of the natural numbers instead. Getting that to work was a little harder, and I ended up implementing a que to hold the tokens.
+        \item I learned how to use valgrind to check for memory leaks, and how to use the GDB CLI to debug programs. It was very helpful for keeping track of where bugs were coming from.
+        \item I forgot how to make my .h and its implementation to compile, but a quick text to friends helped me out there.
+        \item My pop() function kept throwing errors. It turns out that I didn't have any sort of integrated protection for reading outside of bounds. GDB helped me to identify and fix the issue.
+        \item I finally broke down and learned LaTeX. I don't like it as much as markdown, but it's definitely better than HTML and has better organizational features than HTML or markdown.
+    \end{itemize}
+    
+\newpage
+
+\section{Source Code Files}
+    \subsection{\texttt{stack.cpp}}
+        \input{stack.cpp}
+        \newpage
+    \subsection{\texttt{stackADT.cpp}}
+        \input{stackADT.cpp}
+        \newpage
+    \subsection{\texttt{stackADT.h}}
+        \input{stackADT.h}
+        \newpage
+
+    
+\section{Program output}
+    \input{out.txt}
+
+\end{document}

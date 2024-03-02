@@ -1,20 +1,17 @@
-# Program Log <br> Jake Gendreau
+# Assignment 3: Stacks <br> Jake Gendreau <br> March 1, 2024 <br> Program Log
 
-## Hours:
-Started 6:15 PM Feb 26 <br>
-6:52 - header file and implementation file finished <br>
-9:15 PM - Got it to run, but peek is giving me errors. ill try again tomorrow <br>
-FEB 27 2:45 PM: <br>
-Im just gonna restart with a clean slate and try to implement it myself rather than following the provided program description <br>
-4:15 it all works now. Valgrind detects no leaks and I haven't had it crash. Now i get to make it pretty. <br>
-4:57 beautification done. I think ill call it a day here. <br>
-6:23 PM Feb 28 <br>
-The program only works with characters at the moment, which is great if every number is 0-9, but I need to make it work with strings instead <br>
-9:07 with a bit of struggle later, and mis-use of a new stack, it works with strings. Yippe!!<br>
+## Time Requirements
 
-## struggles:
-pop keeps throwing errors for me
-turns out it was not pop. It's peek. I learned that through GDB. Handy piece of software that one is
+* This program took me about 9 hours to complete. However, the character implementation only took about 5 hours. Getting multi-character numbers to work took a while extra.
 
-## what did i learn:
-valgrind and gdb <br>
+## Things I encountered while making this program
+
+* I didn't understand how the provided process works until I tried to implement it from a more vague set of instructions. Once I understood it, implementing it was significantly easier.
+
+* I initially had it reading character by character, which does work for the provided problems, but I wanted to make it work with all of the natural numbers instead. Getting that to work was a little harder, and I ended up implementing a que to hold the tokens.
+
+* I learned how to use valgrind to check for memory leaks, and how to use the GDB CLI to debug programs. It was very helpful for keeping track of where bugs were coming from.
+
+* I forgot how to make my .h and its implementation to compile, but a quick text to friends helped me out there.
+
+* My pop() function kept throwing errors. It turns out that I didn't have any sort of integrated protection for reading outside of bounds. GDB helped me to identify and fix the issue.

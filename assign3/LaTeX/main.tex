@@ -169,6 +169,17 @@
                     \item Otherwise, return buffer
                 \end{enumerate}
 
+            \item{\texttt{isWellFormed(string)}}
+                \begin{enumerate}
+                    \item Make an int called 'balanced' = 0
+                    \item{Iterate over every character in the string}
+                        \begin{enumerate}
+                            \item If character is '(', increment balanced
+                            \item Otherwise, if character is ')', decrement balanced
+                        \end{enumerate}
+                    \item return balanced == 0
+                \end{enumerate}
+
             \item{\texttt{isInString(query, string)}}
                 \begin{enumerate}
                     \item For every character in the string

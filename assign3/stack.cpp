@@ -30,6 +30,7 @@ bool isNum(string);
 bool isGreaterPrecedence(string, string);
 bool isInString(char, string);
 bool getInfix(Stack&);
+bool isWellFormed(string);
 
 int main()
 {
@@ -181,6 +182,12 @@ bool getInfix(Stack &stack)
         return 0;
     }
 
+    if(!isWellFormed(tmpString))
+    {
+        cout << "ERROR: String not well formed" << endl;
+        return 0;
+    }
+
     //create substrings and add them to the temp stack
     for(int i = 0; tmpString[i] != '\0'; i++)
     {
@@ -246,6 +253,21 @@ string cleanExpression(string expression)
     }
 
     return buffer;
+}
+
+bool isWellFormed(string expression)
+{
+    int balanced = 0;
+
+    for(int i = 0; expression[i] != '\0'; i++)
+    {
+        if(expression[i] == '(')
+            balanced++;
+        else if(expression[i] == ')')
+            balanced--;
+    }
+
+    return(balanced == 0);
 }
 
 bool isInString(char query, string string)

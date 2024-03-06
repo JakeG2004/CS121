@@ -21,7 +21,6 @@ string cleanExpression(string);
 int getPrecedence(char);
 
 void initStack(Stack&);
-
 void handleClosedParens(Stack&, string&);
 void handleOperators(Stack&, string, string&);
 void inToPost(Stack&);
@@ -47,6 +46,87 @@ int main()
     cout << "Exiting Program..." << endl;
 
     infix.deleteStack();
+}
+
+string cleanExpression(string expression)
+{
+    //check for quit
+    if(expression == "quit")
+        return("quit");
+
+    string buffer;
+
+    //define valid characters
+    string validChars = "()0123456789*+-/";
+
+    //iterate through expression, comparing to validChars along the way
+    for(int i = 0; expression[i] != '\0'; i++)
+    {
+        if(isInString(expression[i], validChars))
+        {
+            //add to buffer if validChar
+            buffer += expression[i];
+        }
+    }
+
+    //error checking
+    if(buffer.size() == 0)
+    {
+        cout << "Invalid statement." << endl;
+        return("quit");
+    }
+
+    return buffer;
+}
+
+int getPrecedence(string op)
+{
+    if(op.size() != 1){
+        cout << "ERROR: Invalid size in getPrecedence" << endl;
+        exit(-1);
+    }
+    //use PEMDAS to define priority
+    if(op[0] == '/' || op[0] == '*')
+        return 2;
+
+    if(op[0] == '+' || op[0] == '-')
+        return 1;
+
+    return 0;
+}
+
+void initStack(Stack &stack)
+{
+    stack.pushFront("(");
+}
+
+void handleClosedParens(Stack &stack, string &postfix)
+{
+    string stackToken = stack.pop();
+
+    //add everything in the stack on a closed parens
+    while(stackToken != "(")
+    {
+        postfix += stackToken + " ";
+
+        if(stack.size() > 0)
+            stackToken = stack.pop();
+    }
+}
+
+void handleOperators(Stack &stack, string token, string &postfix)
+{
+    string stackToken;
+
+    //iterate through whole stack, organizing operators as it goes
+    while(stack.size() > 0 && isGreaterPrecedence(stack.peek(), token))
+    {
+        stackToken = stack.pop();
+        if(stackToken != "(")
+            postfix += stackToken + " ";
+    }
+
+    stack.pushFront(token);
 }
 
 void inToPost(Stack &infix)
@@ -90,61 +170,6 @@ void inToPost(Stack &infix)
     cout << "Converted to Postfix: " << postfix << endl;
 }
 
-void handleOperators(Stack &stack, string token, string &postfix)
-{
-    string stackToken;
-
-    //iterate through whole stack, organizing operators as it goes
-    while(stack.size() > 0 && isGreaterPrecedence(stack.peek(), token))
-    {
-        stackToken = stack.pop();
-        if(stackToken != "(")
-            postfix += stackToken + " ";
-    }
-
-    stack.pushFront(token);
-}
-
-void handleClosedParens(Stack &stack, string &postfix)
-{
-    string stackToken = stack.pop();
-
-    //add everything in the stack on a closed parens
-    while(stackToken != "(")
-    {
-        postfix += stackToken + " ";
-
-        if(stack.size() > 0)
-            stackToken = stack.pop();
-    }
-}
-
-int getPrecedence(string op)
-{
-    if(op.size() != 1){
-        cout << "ERROR: Invalid size in getPrecedence" << endl;
-        exit(-1);
-    }
-    //use PEMDAS to define priority
-    if(op[0] == '/' || op[0] == '*')
-        return 2;
-
-    if(op[0] == '+' || op[0] == '-')
-        return 1;
-
-    return 0;
-}
-
-bool isGreaterPrecedence(string stackChar, string token)
-{
-    //grab precedence values
-    int tokenVal = getPrecedence(token);
-    int stackVal = getPrecedence(stackChar);
-
-    //compare and return
-    return(stackVal >= tokenVal);
-}
-
 bool isNum(string token)
 {
     for(int i = 0; token[i] != '\0'; i++)
@@ -157,9 +182,25 @@ bool isNum(string token)
     return true;
 }
 
-void initStack(Stack &stack)
+bool isGreaterPrecedence(string stackChar, string token)
 {
-    stack.pushFront("(");
+    //grab precedence values
+    int tokenVal = getPrecedence(token);
+    int stackVal = getPrecedence(stackChar);
+
+    //compare and return
+    return(stackVal >= tokenVal);
+}
+
+bool isInString(char query, string string)
+{
+    //iterate through string, return true if query in string
+    for(int i = 0; string[i] != '\0'; i++)
+    {
+        if(string[i] == query)
+            return true;
+    }
+    return false;
 }
 
 bool getInfix(Stack &stack)
@@ -224,37 +265,6 @@ bool getInfix(Stack &stack)
     return 1;
 }
 
-string cleanExpression(string expression)
-{
-    //check for quit
-    if(expression == "quit")
-        return("quit");
-
-    string buffer;
-
-    //define valid characters
-    string validChars = "()0123456789*+-/";
-
-    //iterate through expression, comparing to validChars along the way
-    for(int i = 0; expression[i] != '\0'; i++)
-    {
-        if(isInString(expression[i], validChars))
-        {
-            //add to buffer if validChar
-            buffer += expression[i];
-        }
-    }
-
-    //error checking
-    if(buffer.size() == 0)
-    {
-        cout << "Invalid statement." << endl;
-        return("quit");
-    }
-
-    return buffer;
-}
-
 bool isWellFormed(string expression)
 {
     int balanced = 0;
@@ -268,15 +278,4 @@ bool isWellFormed(string expression)
     }
 
     return(balanced == 0);
-}
-
-bool isInString(char query, string string)
-{
-    //iterate through string, return true if query in string
-    for(int i = 0; string[i] != '\0'; i++)
-    {
-        if(string[i] == query)
-            return true;
-    }
-    return false;
 }

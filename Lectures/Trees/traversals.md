@@ -24,17 +24,30 @@ The tree that will be used to illustrate the tree traversal methods is shown bel
      / \
     2   3
 
-Pre-order of tree 2:
-- 1
-- 2
-- 3
+Pre-order:
+- 1, 2, 3
 
-In-order of tree 2:
-- 2
-- 1
-- 3
+In-order:
+- 2, 1 ,3
 
-Post-order of tree 2:
-- 2
-- 3
-- 1
+Post-order:
+- 2, 3, 1
+
+The tree that will be used to illustrate the tree traversal methods is shown below:
+
+            5
+           / \
+          17  11
+         / \    \
+        9   41   8
+       / \
+     NULL 13
+
+Pre-order:
+- 5, 17, 9, 13, 41, 11, 8
+
+In-order:
+- 9, 13, 17, 41, 5, 11, 8
+
+Post-order:
+- 13, 9, 41, 17, 8, 11, 5

@@ -17,3 +17,7 @@ Printing this In-Order yields:
 - 3, 9, 17, 20, 45, 53, 53, 54
 
 **NOTE** This is a sorted list!
+
+**What is the benefit of this organization?**
+
+Contents are *sorted* when processing using an *in-order* traversal.

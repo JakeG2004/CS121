@@ -135,6 +135,16 @@ void BinarySearchTree::PrintInOrder()
     PrintBST_InOrder(rootPtr);
 }
 
+void BinarySearchTree::PrintPostOrder()
+{
+    PrintBST_PostOrder(rootPtr);
+}
+
+void BinarySearchTree::PrintPreOrder()
+{
+    PrintBST_PreOrder(rootPtr);
+}
+
 void BinarySearchTree::PrintBST_InOrder(BSTreePtr treePtr)
 {
     if(treePtr != NULL)

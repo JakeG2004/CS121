@@ -17,12 +17,23 @@ struct cell
 {
     char type;
     bool visited = false;
+    int x;
+    int y;
+    int cost;
 };
 
 //prototypes
 int getDimension(string);
-void getMaze(cell[], string, int);
-void printMaze(cell[], int);
+cell** getMaze(string, int);
+void printMaze(cell**, int);
+cell findStart(cell**, int);
+
+/*
+start - S
+goal - G
+wall - #
+blank - .
+*/
 
 int main(int argc, char* argv[])
 {
@@ -37,11 +48,13 @@ int main(int argc, char* argv[])
 
     //init array
     int dimension = getDimension(fileName);
-    cell maze[dimension * dimension];
-    getMaze(maze, fileName, dimension);
+    cell** maze = getMaze(fileName, dimension);
 
     printMaze(maze, dimension);
 
+    cell agent = findStart(maze, dimension);
+
+    Queue queue = Queue();
 }
 
 int getDimension(string fileName)
@@ -69,7 +82,7 @@ int getDimension(string fileName)
     return stoi(word);
 }
 
-void getMaze(cell maze[], string fileName, int dimension)
+cell** getMaze(string fileName, int dimension)
 {
     //open file
     string line;
@@ -87,31 +100,73 @@ void getMaze(cell maze[], string fileName, int dimension)
     //adjust file pointer to be start of the maze
     getline(file, line);
 
+    cell** maze = new cell*[dimension];
+
     //read in the map
     for(int i = 0; i < dimension; i++)
     {
+        maze[i] = new cell[dimension];
         //get this line
         getline(file, line);
         for(int j = 0; j < dimension; j++)
         {
             //write the chars of the current line into the array
-            maze[i * dimension + j].type = line[j];
+            maze[i][j].type = line[j];
+            maze[i][j].x = j;
+            maze[i][j].y = i;
         }
     }
 
     //close the file
     file.close();
+
+    return maze;
 }
 
-void printMaze(cell maze[], int dimension)
+void printMaze(cell** maze, int dimension)
 {
     //print the maze
     for(int i = 0; i < dimension; i++)
     {
         for(int j = 0; j < dimension; j++)
         {
-            cout << maze[i * dimension + j].type << "\t"; 
+            cout << maze[i][j].type;
         }
         cout << endl;
     }
 }
+
+cell findStart(cell** maze, int dimension)
+{
+    for(int i = 0; i < dimension; i++)
+    {
+        for(int j = 0; j < dimension; j++)
+        {
+            if(maze[i][j].type == 'S')
+            {
+                return maze[i][j];
+            }
+        }
+    }
+
+    cout << "ERROR: COULDN'T FIND START" << endl;
+    exit(-1);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

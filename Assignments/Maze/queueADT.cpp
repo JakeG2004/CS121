@@ -81,7 +81,7 @@ void Queue::print()
     //print data of each node
     while(n != NULL)
     {
-        cout << n -> data << endl;
+        cout << n -> data.type << endl;
         n = n -> next;
     }
 }

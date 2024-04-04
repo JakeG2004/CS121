@@ -12,21 +12,16 @@ April 1, 2024
 
 using namespace std;
 
-//cell struct for storing maze
-struct cell
-{
-    char type;
-    bool visited = false;
-    int x;
-    int y;
-    int cost;
-};
-
 //prototypes
 int getDimension(string);
 cell** getMaze(string, int);
 void printMaze(cell**, int);
-cell findStart(cell**, int);
+cell* findStart(cell**, int);
+void solveMaze(cell*, cell**, int, Queue&);
+
+bool checkGoal(cell*, cell**, int);
+void addUnvisited(cell*, cell**, int, Queue&);
+void printSolvedMaze(cell**, int);
 
 /*
 start - S
@@ -52,9 +47,101 @@ int main(int argc, char* argv[])
 
     printMaze(maze, dimension);
 
-    cell agent = findStart(maze, dimension);
+    cell* agent = findStart(maze, dimension);
 
     Queue queue = Queue();
+
+    solveMaze(agent, maze, dimension, queue);
+    printSolvedMaze(maze, dimension);
+}
+
+void solveMaze(cell* agent, cell** maze, int dimension, Queue &queue)
+{
+    //check for goal cell
+    if(checkGoal(agent, maze, dimension))
+    {
+        cout << "Found solution" << endl;
+        return;
+    }
+
+    //mark current cell as visited
+    maze[agent -> y][agent -> x].visited = true;
+
+    //add all unvisited neighbors
+    addUnvisited(agent, maze, dimension, queue);
+
+    //remove next element and make it current cell
+    cell newAgent = queue.dequeue();
+    solveMaze(&newAgent, maze, dimension, queue);
+}
+
+void printSolvedMaze(cell** maze, int dimension)
+{
+    for(int i = 0; i < dimension; i++)
+    {
+        for(int j = 0; j < dimension; j++)
+        {
+            if(maze[i][j].type == 'S' || maze[i][j].type == 'G')
+            {
+                cout << maze[i][j].type;
+            }
+            else if(maze[i][j].visited)
+            {
+                cout << "#";
+            }
+            else
+            {
+                cout << "0";
+            }
+        }
+        cout << endl;
+    }
+}
+
+void addUnvisited(cell* agent, cell** maze, int dimension, Queue &queue)
+{
+    int x = agent -> x;
+    int y = agent -> y;
+
+    //check north
+    if(y - 1 >= 0 && maze[y - 1][x].type == '.' && maze[y - 1][x].visited == false)
+        queue.enqueue(maze[y - 1][x]);
+    
+    //check south
+    if(y + 1 < dimension && maze[y + 1][x].type == '.' && maze[y + 1][x].visited == false)
+        queue.enqueue(maze[y + 1][x]);
+
+    //check west
+    if(x - 1 >= 0 && maze[y][x - 1].type == '.' && maze[y][x - 1].visited == false)
+        queue.enqueue(maze[y][x - 1]);
+
+    //check east
+    if(x + 1 < dimension && maze[y][x + 1].type == '.' && maze[y][x + 1].visited == false)
+        queue.enqueue(maze[y][x + 1]);
+}
+
+bool checkGoal(cell* agent, cell** maze, int dimension)
+{
+    int x = agent -> x;
+    int y = agent -> y;
+
+    //check north
+    if(y - 1 >= 0 && maze[y - 1][x].type == 'G')
+        return true;
+    
+    //check south
+    if(y + 1 < dimension && maze[y + 1][x].type == 'G')
+        return true;
+
+    //check west
+    if(x - 1 >= 0 && maze[y][x - 1].type == 'G')
+        return true;
+
+    //check east
+    if(x + 1 < dimension && maze[y][x + 1].type == 'G')
+        return true;
+    
+    return false;
 }
 
 int getDimension(string fileName)
@@ -136,7 +223,7 @@ void printMaze(cell** maze, int dimension)
     }
 }
 
-cell findStart(cell** maze, int dimension)
+cell* findStart(cell** maze, int dimension)
 {
     for(int i = 0; i < dimension; i++)
     {
@@ -144,7 +231,7 @@ cell findStart(cell** maze, int dimension)
         {
             if(maze[i][j].type == 'S')
             {
-                return maze[i][j];
+                return &maze[i][j];
             }
         }
     }

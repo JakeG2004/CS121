@@ -9,7 +9,6 @@ struct cell
     bool visited = false;
     int x;
     int y;
-    int cost;
 };
 
 typedef cell DATA_TYPE;

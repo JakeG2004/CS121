@@ -64,9 +64,6 @@ void solveMaze(cell* agent, cell** maze, int dimension, Queue &queue)
         return;
     }
 
-    //mark current cell as visited
-    maze[agent -> y][agent -> x].visited = true;
-
     //add all unvisited neighbors
     addUnvisited(agent, maze, dimension, queue);
 
@@ -85,13 +82,13 @@ void printSolvedMaze(cell** maze, int dimension)
             {
                 cout << maze[i][j].type;
             }
-            else if(maze[i][j].visited)
+            else if(maze[i][j].visited == true)
             {
                 cout << "#";
             }
             else
             {
-                cout << "0";
+                cout << " ";
             }
         }
         cout << endl;
@@ -105,19 +102,31 @@ void addUnvisited(cell* agent, cell** maze, int dimension, Queue &queue)
 
     //check north
     if(y - 1 >= 0 && maze[y - 1][x].type == '.' && maze[y - 1][x].visited == false)
+    {
+        maze[y - 1][x].visited = true;
         queue.enqueue(maze[y - 1][x]);
+    }
     
     //check south
     if(y + 1 < dimension && maze[y + 1][x].type == '.' && maze[y + 1][x].visited == false)
+    {
+        maze[y + 1][x].visited = true;
         queue.enqueue(maze[y + 1][x]);
+    }
 
     //check west
     if(x - 1 >= 0 && maze[y][x - 1].type == '.' && maze[y][x - 1].visited == false)
+    {
+        maze[y][x - 1].visited = true;
         queue.enqueue(maze[y][x - 1]);
+    }
 
     //check east
     if(x + 1 < dimension && maze[y][x + 1].type == '.' && maze[y][x + 1].visited == false)
+    {
+        maze[y][x + 1].visited = true;
         queue.enqueue(maze[y][x + 1]);
+    }
 }
 
 bool checkGoal(cell* agent, cell** maze, int dimension)

@@ -13,15 +13,17 @@ April 1, 2024
 using namespace std;
 
 //prototypes
-int getDimension(string);
-cell** getMaze(string, int);
-void printMaze(cell**, int);
-cell* findStart(cell**, int);
 void solveMaze(cell*, cell**, int, Queue&);
+void printMaze(cell**, int);
+void printSolvedMaze(cell**, int);
+void addUnvisited(cell*, cell**, int, Queue&);
 
 bool checkGoal(cell*, cell**, int);
-void addUnvisited(cell*, cell**, int, Queue&);
-void printSolvedMaze(cell**, int);
+
+int getDimension(string);
+
+cell** getMaze(string, int);
+cell* findStart(cell**, int);
 
 /*
 start - S
@@ -45,12 +47,16 @@ int main(int argc, char* argv[])
     int dimension = getDimension(fileName);
     cell** maze = getMaze(fileName, dimension);
 
-    printMaze(maze, dimension);
+    //print the maze
+    //printMaze(maze, dimension);
 
+    //make the agent
     cell* agent = findStart(maze, dimension);
 
+    //make the queue
     Queue queue = Queue();
 
+    //solve and print the maze
     solveMaze(agent, maze, dimension, queue);
     printSolvedMaze(maze, dimension);
 }
@@ -72,8 +78,22 @@ void solveMaze(cell* agent, cell** maze, int dimension, Queue &queue)
     solveMaze(&newAgent, maze, dimension, queue);
 }
 
+void printMaze(cell** maze, int dimension)
+{
+    //print the maze
+    for(int i = 0; i < dimension; i++)
+    {
+        for(int j = 0; j < dimension; j++)
+        {
+            cout << maze[i][j].type;
+        }
+        cout << endl;
+    }
+}
+
 void printSolvedMaze(cell** maze, int dimension)
 {
+    //go through, printing goal, start, and visited paths
     for(int i = 0; i < dimension; i++)
     {
         for(int j = 0; j < dimension; j++)
@@ -219,21 +239,9 @@ cell** getMaze(string fileName, int dimension)
     return maze;
 }
 
-void printMaze(cell** maze, int dimension)
-{
-    //print the maze
-    for(int i = 0; i < dimension; i++)
-    {
-        for(int j = 0; j < dimension; j++)
-        {
-            cout << maze[i][j].type;
-        }
-        cout << endl;
-    }
-}
-
 cell* findStart(cell** maze, int dimension)
 {
+    //go through whole maze, finding start cell
     for(int i = 0; i < dimension; i++)
     {
         for(int j = 0; j < dimension; j++)
@@ -248,21 +256,3 @@ cell* findStart(cell** maze, int dimension)
     cout << "ERROR: COULDN'T FIND START" << endl;
     exit(-1);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

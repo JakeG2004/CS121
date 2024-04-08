@@ -17,9 +17,10 @@ int main()
 
     cout << "QUEUE SIZE: " << queue.size() << endl;
 
+    /*
     queue.enqueue(6);
     queue.enqueue(8);
-    queue.enqueue(10);
+    queue.enqueue(10);*/
 
     cout << "QUEUE SIZE: " << queue.size() << endl;
     queue.print();

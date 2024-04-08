@@ -98,18 +98,7 @@ void printSolvedMaze(cell** maze, int dimension)
     {
         for(int j = 0; j < dimension; j++)
         {
-            if(maze[i][j].type == 'S' || maze[i][j].type == 'G')
-            {
-                cout << maze[i][j].type;
-            }
-            else if(maze[i][j].visited == true)
-            {
-                cout << "#";
-            }
-            else
-            {
-                cout << " ";
-            }
+            cout << maze[i][j].type;
         }
         cout << endl;
     }
@@ -120,32 +109,32 @@ void addUnvisited(cell* agent, cell** maze, int dimension, Queue &queue)
     int x = agent -> x;
     int y = agent -> y;
 
-    //check north
-    if(y - 1 >= 0 && maze[y - 1][x].type == '.' && maze[y - 1][x].visited == false)
-    {
-        maze[y - 1][x].visited = true;
-        queue.enqueue(maze[y - 1][x]);
-    }
-    
     //check south
-    if(y + 1 < dimension && maze[y + 1][x].type == '.' && maze[y + 1][x].visited == false)
+    if(y + 1 < dimension && maze[y + 1][x].type == '.' && maze[y + 1][x].type == '.')
     {
-        maze[y + 1][x].visited = true;
+        maze[y + 1][x].type = 'v';
         queue.enqueue(maze[y + 1][x]);
     }
 
-    //check west
-    if(x - 1 >= 0 && maze[y][x - 1].type == '.' && maze[y][x - 1].visited == false)
+    //check east
+    if(x + 1 < dimension && maze[y][x + 1].type == '.' && maze[y][x + 1].type == '.')
     {
-        maze[y][x - 1].visited = true;
-        queue.enqueue(maze[y][x - 1]);
+        maze[y][x + 1].type = '>';
+        queue.enqueue(maze[y][x + 1]);
     }
 
-    //check east
-    if(x + 1 < dimension && maze[y][x + 1].type == '.' && maze[y][x + 1].visited == false)
+    //check north
+    if(y - 1 >= 0 && maze[y - 1][x].type == '.' && maze[y - 1][x].type == '.')
     {
-        maze[y][x + 1].visited = true;
-        queue.enqueue(maze[y][x + 1]);
+        maze[y - 1][x].type = '^';
+        queue.enqueue(maze[y - 1][x]);
+    }
+
+    //check west
+    if(x - 1 >= 0 && maze[y][x - 1].type == '.' && maze[y][x - 1].type == '.')
+    {
+        maze[y][x - 1].type = '<';
+        queue.enqueue(maze[y][x - 1]);
     }
 }
 

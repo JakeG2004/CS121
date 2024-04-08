@@ -6,7 +6,6 @@
 struct cell
 {
     char type;
-    bool visited = false;
     int x;
     int y;
 };

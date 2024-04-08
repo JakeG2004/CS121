@@ -216,13 +216,15 @@ cell** getMaze(string fileName, int dimension)
     //adjust file pointer to be start of the maze
     getline(file, line);
 
+    //start 2D array
     cell** maze = new cell*[dimension];
 
     //read in the map
     for(int i = 0; i < dimension; i++)
     {
+        //define row of 2D array
         maze[i] = new cell[dimension];
-        //get this line
+        //get current line
         getline(file, line);
         for(int j = 0; j < dimension; j++)
         {

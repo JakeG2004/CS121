@@ -7,18 +7,13 @@ April 1, 2024
 
 //dependencies
 #include <iostream>
-#include "queueADT.h"
+#include "queueADTOLD.h"
 
 using namespace std;
 
 //enqueue() - adds an item to the queue
-void Queue::enqueue(int y, int x)
+void Queue::enqueue(DATA_TYPE x)
 {
-    cell data = cell();
-
-    data.x = x;
-    data.y = y;
-
     //alloc new node
     nodePtr p = new node();
 
@@ -31,7 +26,7 @@ void Queue::enqueue(int y, int x)
 
     //fill node
     p -> next = NULL;
-    p -> data = data;
+    p -> data = x;
 
     //handle empty list
     if(head == NULL)
@@ -86,7 +81,7 @@ void Queue::print()
     //print data of each node
     while(n != NULL)
     {
-        cout << n -> data.x << " " << n -> data.y << endl;
+        cout << n -> data.type << endl;
         n = n -> next;
     }
 }

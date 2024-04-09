@@ -5,6 +5,7 @@
 
 struct cell
 {
+    char type;
     int x;
     int y;
 };
@@ -45,7 +46,7 @@ public:
         }
     }
 
-    void enqueue(int y, int x);
+    void enqueue(DATA_TYPE x);
 
     DATA_TYPE dequeue();
 

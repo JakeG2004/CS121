@@ -91,7 +91,7 @@ void printMaze(cell** maze, int dimension)
     }
 }
 
-void printSolvedMaze(cell** maze, int dimension)
+void addUnvisited(cell agent, char** maze, int dimension, Queue &queue)
 {
     //go through, printing goal, start, and visited paths
     for(int i = 0; i < dimension; i++)

@@ -1,14 +1,14 @@
 /*
-mazeSolver.cpp
-A program to solve mazes using an A* implementation
+BeFSSolver.cpp
+A program to solve mazes using an Greedy Best First Search implementation
 Jake Gendreau
-April 1, 2024
+April 9, 2024
 */
 
 //boilerplate
 #include <iostream>
 #include <fstream>
-#include "queueADT.cpp"
+#include "priorityQADT.cpp"
 
 using namespace std;
 
@@ -20,9 +20,11 @@ void addUnvisited(cell, char**, int, Queue&);
 bool checkGoal(cell, char**, int);
 
 int getDimension(string);
+int getManhattanDist(int, int, char**, int);
 
 char** getMaze(string, int);
 cell findStart(char**, int);
+cell findGoal(char**, int);
 
 /*
 start - S
@@ -70,9 +72,8 @@ void solveMaze(cell agent, char** maze, int dimension, Queue &queue)
     addUnvisited(agent, maze, dimension, queue);
 
     //remove next element and make it current cell
-    cout << endl;
-    printMaze(maze, dimension);
     cell newAgent = queue.dequeue();
+
     solveMaze(newAgent, maze, dimension, queue);
 }
 
@@ -98,28 +99,28 @@ void addUnvisited(cell agent, char** maze, int dimension, Queue &queue)
     if(y + 1 < dimension && maze[y + 1][x] == '.' && maze[y + 1][x] == '.')
     {
         maze[y + 1][x] = 'v';
-        queue.enqueue(y + 1, x);
+        queue.enqueue(y + 1, x, getManhattanDist(x, y + 1, maze, dimension));
     }
 
     //check east
     if(x + 1 < dimension && maze[y][x + 1] == '.' && maze[y][x + 1] == '.')
     {
         maze[y][x + 1] = '>';
-        queue.enqueue(y, x + 1);
+        queue.enqueue(y, x + 1, getManhattanDist(x + 1, y, maze, dimension));
     }
 
     //check north
     if(y - 1 >= 0 && maze[y - 1][x] == '.' && maze[y - 1][x] == '.')
     {
         maze[y - 1][x] = '^';
-        queue.enqueue(y - 1, x);
+        queue.enqueue(y - 1, x, getManhattanDist(x, y - 1, maze, dimension));
     }
 
     //check west
     if(x - 1 >= 0 && maze[y][x - 1] == '.' && maze[y][x - 1] == '.')
     {
         maze[y][x - 1] = '<';
-        queue.enqueue(y, x - 1);
+        queue.enqueue(y, x - 1, getManhattanDist(x - 1, y, maze, dimension));
     }
 }
 
@@ -145,6 +146,13 @@ bool checkGoal(cell agent, char** maze, int dimension)
         return true;
     
     return false;
+}
+
+int getManhattanDist(int x, int y, char** maze, int dimension)
+{
+    cell start = findGoal(maze, dimension);
+
+    return(abs(x - start.x) + abs(y - start.y));
 }
 
 int getDimension(string fileName)
@@ -233,5 +241,28 @@ cell findStart(char** maze, int dimension)
     }
 
     cout << "ERROR: COULDN'T FIND START" << endl;
+    exit(-1);
+}
+
+cell findGoal(char** maze, int dimension)
+{
+    //go through whole maze, finding start cell
+    for(int i = 0; i < dimension; i++)
+    {
+        for(int j = 0; j < dimension; j++)
+        {
+            if(maze[i][j] == 'G')
+            {
+                cell c = cell();
+
+                c.x = j;
+                c.y = i;
+
+                return c;
+            }
+        }
+    }
+
+    cout << "ERROR: COULDN'T FIND GOAL" << endl;
     exit(-1);
 }

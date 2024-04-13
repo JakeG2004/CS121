@@ -152,6 +152,18 @@ void BSTree::deleteTree(BSTreeNodePtr n)
     if(n == NULL)
         return;
 
+    //handle linked list of actors
+    NodePtr p = n -> data.actorHead;
+    NodePtr q = p;
+
+    while(p != NULL)
+    {
+        p = p -> next;
+        q -> next = NULL;
+        delete q;
+        q = p;
+    }
+
     //delete children
     deleteTree(n -> left);
     deleteTree(n -> right);

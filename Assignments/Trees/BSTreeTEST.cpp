@@ -16,16 +16,16 @@ int main()
     Show newShow = createNode("Matlock", "Mystery", "google.com", 1995, 2000, "Alice", "Bob");
     showTree.insertNode(showTree.head, newShow);
 
-    newShow = createNode("The Office", "Mystery", "google.com", 1995, 2000, "Alice", "Bob");
+    newShow = createNode("The Office", "Mystery", "google.com", 1995, 2000, "Derek", "Eric");
     showTree.insertNode(showTree.head, newShow);
 
-    newShow = createNode("The Office1", "Mystery", "google.com", 1995, 2000, "Alice", "Bob");
+    newShow = createNode("The Office1", "Mystery", "google.com", 1995, 2000, "Farquad", "Gerald");
     showTree.insertNode(showTree.head, newShow);
 
-    newShow = createNode("0Matlock", "Mystery", "google.com", 1995, 2000, "Alice", "Bob");
+    newShow = createNode("0Matlock", "Mystery", "google.com", 1995, 2000, "Hunter", "Ingo");
     showTree.insertNode(showTree.head, newShow);
 
-    newShow = createNode("Matlock0", "Mystery", "google.com", 1995, 2000, "Alice", "Bob");
+    newShow = createNode("Matlock0", "Mystery", "google.com", 1995, 2000, "Jake", "Keenan");
     showTree.insertNode(showTree.head, newShow);
 
     showTree.printShows(showTree.head);
@@ -34,6 +34,8 @@ int main()
     showTree.printShowsWithActor(showTree.head, "Alice");
 
     showTree.printShowsReleasedBetween(showTree.head, 1990, 2001);
+
+    showTree.deleteTree(showTree.head);
 }
 
 Show createNode(string newName, string newGenre, string newLink, int start, int end, string actor1, string actor2)

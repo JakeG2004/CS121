@@ -132,8 +132,14 @@ void BSTree::printShowsReleasedBetween(BSTreeNodePtr n, int start, int end)
         exit(-1);
     }
 
-    //handle success case
-    if((n -> data.startDate >= start && n -> data.startDate <= end) || n -> data.endDate >= start && n -> data.endDate <= end)
+    //handle started in given period
+    if(n -> data.startDate >= start && n -> data.startDate <= end)
+    {
+        cout << "\t" << n -> data.name << endl;
+    }
+
+    //handle ended in given period
+    else if(n -> data.endDate >= start && n -> data.endDate <= end)
     {
         cout << "\t" << n -> data.name << endl;
     }

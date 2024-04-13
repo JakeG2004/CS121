@@ -19,7 +19,7 @@ int main()
     newShow = createNode("The Office", "Mystery", "google.com", 2001, 2002, "Derek", "Eric");
     showTree.insertNode(showTree.head, newShow);
 
-    newShow = createNode("The Office1", "Mystery", "google.com", 1995, 2000, "Farquad", "Gerald");
+    newShow = createNode("The Office1", "Mystery", "google.com", 1995, 1996, "Farquad", "Gerald");
     showTree.insertNode(showTree.head, newShow);
 
     newShow = createNode("0Matlock", "Mystery", "google.com", 1995, 2000, "Hunter", "Ingo");

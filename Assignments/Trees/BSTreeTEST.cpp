@@ -13,10 +13,10 @@ Show createNode(string newName, string newGenre, string newLink, int start, int 
 int main()
 {
     BSTree showTree = BSTree();
-    Show newShow = createNode("Matlock", "Mystery", "google.com", 1995, 2000, "Alice", "Bob");
+    Show newShow = createNode("Matlock", "Mystery", "google.com", 1980, 1989, "Alice", "Bob");
     showTree.insertNode(showTree.head, newShow);
 
-    newShow = createNode("The Office", "Mystery", "google.com", 1995, 2000, "Derek", "Eric");
+    newShow = createNode("The Office", "Mystery", "google.com", 2001, 2002, "Derek", "Eric");
     showTree.insertNode(showTree.head, newShow);
 
     newShow = createNode("The Office1", "Mystery", "google.com", 1995, 2000, "Farquad", "Gerald");
@@ -28,12 +28,17 @@ int main()
     newShow = createNode("Matlock0", "Mystery", "google.com", 1995, 2000, "Jake", "Keenan");
     showTree.insertNode(showTree.head, newShow);
 
+    cout << "Printing all shows" << endl;
     showTree.printShows(showTree.head);
 
+    cout << "Printing all actors in Matlock" << endl;
     showTree.printActorsInShow(showTree.head, "Matlock");
+
+    cout << "Printing all shows with Alice" << endl;
     showTree.printShowsWithActor(showTree.head, "Alice");
 
-    showTree.printShowsReleasedBetween(showTree.head, 1990, 2001);
+    cout << "Printing all shows released between 1990 and 2000" << endl;
+    showTree.printShowsReleasedBetween(showTree.head, 1990, 2000);
 
     showTree.deleteTree(showTree.head);
 }

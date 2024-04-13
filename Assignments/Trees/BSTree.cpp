@@ -54,7 +54,7 @@ void BSTree::printShows(BSTreeNodePtr n)
     if(n != NULL)
     {
         printShows(n -> left);
-        cout << n -> data.name << endl;
+        cout << "\t" << n -> data.name << endl;
         printShows(n -> right);
     }
 }
@@ -133,7 +133,7 @@ void BSTree::printShowsReleasedBetween(BSTreeNodePtr n, int start, int end)
     }
 
     //handle success case
-    if(n -> data.startDate >= start && n -> data.startDate <= end)
+    if((n -> data.startDate >= start && n -> data.startDate <= end) || n -> data.endDate >= start && n -> data.endDate <= end)
     {
         cout << "\t" << n -> data.name << endl;
     }

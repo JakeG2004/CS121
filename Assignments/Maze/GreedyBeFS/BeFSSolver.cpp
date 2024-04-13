@@ -150,8 +150,8 @@ bool checkGoal(cell agent, char** maze, int dimension)
 
 int getManhattanDist(int x, int y, char** maze, int dimension)
 {
+    //get manhattan distance to goal
     cell start = findGoal(maze, dimension);
-
     return(abs(x - start.x) + abs(y - start.y));
 }
 

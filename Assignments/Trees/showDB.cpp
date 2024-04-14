@@ -14,6 +14,7 @@ using namespace std;
 BSTree readFile(string);
 
 string getName(string);
+string removeFollowingWhiteSpace(string);
 
 int getStartDate(string);
 int getEndDate(string);
@@ -39,7 +40,7 @@ int main(int argc, char* argv[])
 
     //the issue here is that i only account for one space when adding the name, not multiple
     cout << "All actors in The Office" << endl;
-    showTree.printActorsInShow(showTree.head, "The Office ");
+    showTree.printActorsInShow(showTree.head, "The Office");
 
     cout << "All actors in The Prisoner" << endl;
     showTree.printActorsInShow(showTree.head, "The Prisoner");
@@ -108,23 +109,23 @@ BSTree readFile(string filepath)
         }
 
         //get name and dates
-        newShow.name = getName(curLine);
+        newShow.name = removeFollowingWhiteSpace(getName(curLine));
         newShow.startDate = getStartDate(curLine);
         newShow.endDate = getEndDate(curLine);
 
         //get genre
         getline(infile, curLine);
-        newShow.genre = curLine;
+        newShow.genre = removeFollowingWhiteSpace(curLine);
 
         //get link
         getline(infile, curLine);
-        newShow.link = curLine;
+        newShow.link = removeFollowingWhiteSpace(curLine);
 
         //get actors / actresses
         while(curLine != "")
         {
             getline(infile, curLine);
-            insertActor(newShow.actorHead, curLine);
+            insertActor(newShow.actorHead, removeFollowingWhiteSpace(curLine));
         }
 
         showTree.insertNode(showTree.head, newShow);
@@ -145,6 +146,35 @@ string getName(string curLine)
     }
 
     return name;
+}
+
+string removeFollowingWhiteSpace(string curLine)
+{
+    string returnString = "";
+
+    //get size of string
+    int numChars = 0;
+    for(int i = 0; curLine[i] != '\0'; i++)
+    {
+        numChars++;
+    }
+
+    //cout << "numChars in " << curLine << ": " << numChars << endl;
+
+    //get whitespace
+    int whiteSpace = 0;
+    //check for tabs and spaces
+    for(int i = numChars - 1; i >= 0 && (curLine[i] == ' ' || curLine[i] == '\t'); i--)
+    {
+        whiteSpace++;
+    }
+
+    for(int i = 0; i < numChars - whiteSpace; i++)
+    {
+        returnString += curLine[i];
+    }
+
+    return returnString;
 }
 
 int getStartDate(string curLine)

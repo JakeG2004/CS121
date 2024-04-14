@@ -128,7 +128,8 @@ BSTree readFile(string filepath)
             insertActor(newShow.actorHead, removeFollowingWhiteSpace(curLine));
         }
 
-        showTree.insertNode(showTree.head, newShow);
+        if(!showTree.isInTree(showTree.head, newShow.name))
+            showTree.insertNode(showTree.head, newShow);
     }
 
     return showTree;

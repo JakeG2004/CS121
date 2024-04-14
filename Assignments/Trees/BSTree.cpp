@@ -177,3 +177,14 @@ void BSTree::deleteTree(BSTreeNodePtr n)
     //delete current node
     delete n;
 }
+
+bool BSTree::isInTree(BSTreeNodePtr n, string showName)
+{
+    if(n == NULL)
+        return false;
+
+    if(showName == n -> data.name)
+        return true;
+
+    return(isInTree(n -> left, showName) || isInTree(n -> right, showName));
+}

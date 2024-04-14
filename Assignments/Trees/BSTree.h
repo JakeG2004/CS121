@@ -57,7 +57,9 @@ class BSTree
         void printActorsInShow(BSTreeNodePtr, string);
         void printShowsWithActor(BSTreeNodePtr, string);
         void printShowsReleasedBetween(BSTreeNodePtr, int, int);
-        void deleteTree(BSTreeNodePtr n);
+        void deleteTree(BSTreeNodePtr);
+
+        bool isInTree(BSTreeNodePtr, string);
 };
 
 #endif

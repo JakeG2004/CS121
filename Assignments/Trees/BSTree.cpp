@@ -180,11 +180,14 @@ void BSTree::deleteTree(BSTreeNodePtr n)
 
 bool BSTree::isInTree(BSTreeNodePtr n, string showName)
 {
+    //null case
     if(n == NULL)
         return false;
 
+    //match case
     if(showName == n -> data.name)
         return true;
 
+    //general case
     return(isInTree(n -> left, showName) || isInTree(n -> right, showName));
 }

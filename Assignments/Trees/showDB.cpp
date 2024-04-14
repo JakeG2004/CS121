@@ -69,6 +69,7 @@ int main(int argc, char* argv[])
     cout << "All Shows with Bob Denver" << endl;
     showTree.printShowsWithActor(showTree.head, "Bob Denver");
 
+    showTree.deleteTree(showTree.head);
 }
 
 BSTree readFile(string filepath)
@@ -128,8 +129,11 @@ BSTree readFile(string filepath)
             insertActor(newShow.actorHead, removeFollowingWhiteSpace(curLine));
         }
 
+        //handle duplicates
         if(!showTree.isInTree(showTree.head, newShow.name))
+        {
             showTree.insertNode(showTree.head, newShow);
+        }
     }
 
     return showTree;

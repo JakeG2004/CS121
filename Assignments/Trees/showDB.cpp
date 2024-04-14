@@ -134,6 +134,21 @@ BSTree readFile(string filepath)
         {
             showTree.insertNode(showTree.head, newShow);
         }
+
+        else
+        {
+            //delete any allocated memory from linked list in duplicate show
+            NodePtr p = newShow.actorHead;
+            NodePtr q = p;
+
+            while(p != NULL)
+            {
+                p = p -> next;
+                q -> next = NULL;
+                delete q;
+                q = p;
+            }
+        }
     }
 
     return showTree;

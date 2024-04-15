@@ -48,6 +48,11 @@ void BSTree::insertNode(BSTreeNodePtr &n, Show show)
     }
 }
 
+void BSTree::insertNode(Show show)
+{
+    insertNode(head, show);
+}
+
 void BSTree::printShows(BSTreeNodePtr n)
 {
     //print names in order
@@ -57,6 +62,11 @@ void BSTree::printShows(BSTreeNodePtr n)
         cout << "\t" << n -> data.name << endl;
         printShows(n -> right);
     }
+}
+
+void BSTree::printShows()
+{
+    printShows(head);
 }
 
 void BSTree::printActorsInShow(BSTreeNodePtr n, string showName)
@@ -92,6 +102,11 @@ void BSTree::printActorsInShow(BSTreeNodePtr n, string showName)
     }
 }
 
+void BSTree::printActorsInShow(string showName)
+{
+    printActorsInShow(head, showName);
+}
+
 void BSTree::printShowsWithActor(BSTreeNodePtr n, string actorName)
 {
     //error check
@@ -123,6 +138,11 @@ void BSTree::printShowsWithActor(BSTreeNodePtr n, string actorName)
         printShowsWithActor(n -> right, actorName);
 }
 
+void BSTree::printShowsWithActor(string actorName)
+{
+    printShowsWithActor(head, actorName);
+}
+
 void BSTree::printShowsReleasedBetween(BSTreeNodePtr n, int start, int end)
 {
     //error check
@@ -152,6 +172,11 @@ void BSTree::printShowsReleasedBetween(BSTreeNodePtr n, int start, int end)
         printShowsReleasedBetween(n -> right, start, end);
 }
 
+void BSTree::printShowsReleasedBetween(int start, int end)
+{
+    printShowsReleasedBetween(head, start, end);
+}
+
 void BSTree::deleteTree(BSTreeNodePtr n)
 {
     //if NULL, return
@@ -178,6 +203,11 @@ void BSTree::deleteTree(BSTreeNodePtr n)
     delete n;
 }
 
+void BSTree::deleteTree()
+{
+    deleteTree(head);
+}
+
 bool BSTree::isInTree(BSTreeNodePtr n, string showName)
 {
     //null case
@@ -190,4 +220,9 @@ bool BSTree::isInTree(BSTreeNodePtr n, string showName)
 
     //general case
     return(isInTree(n -> left, showName) || isInTree(n -> right, showName));
+}
+
+bool BSTree::isInTree(string showName)
+{
+    return isInTree(head, showName);
 }

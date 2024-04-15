@@ -20,6 +20,10 @@ int getStartDate(string);
 int getEndDate(string);
 
 void insertActor(NodePtr&, string);
+void deleteActorList(NodePtr&);
+
+void printActorsInShow(BSTree, string);
+void printShowsWithActor(BSTree, string);
 
 int main(int argc, char* argv[])
 {
@@ -32,44 +36,23 @@ int main(int argc, char* argv[])
     //read in the tree from the data file
     BSTree showTree = readFile(argv[1]);
 
-    //cout << "All show titles in the tree:" << endl;
-    //showTree.printShows(showTree.head);
+    cout << "All show titles in the tree:" << endl;
+    showTree.printShows();
 
-    cout << "All actors in Parry Mason" << endl;
-    showTree.printActorsInShow(showTree.head, "Perry Mason");
+    //print actors in show
+    printActorsInShow(showTree, "Perry Mason");
+    printActorsInShow(showTree, "The Prisoner");
+    printActorsInShow(showTree, "Gilligan's Island");
+    printActorsInShow(showTree, "M*A*S*H");
 
-    //the issue here is that i only account for one space when adding the name, not multiple
-    cout << "All actors in The Office" << endl;
-    showTree.printActorsInShow(showTree.head, "The Office");
+    //print shows with actor
+    printShowsWithActor(showTree, "Raymond Burr");
+    printShowsWithActor(showTree, "Bill Mumy");
+    printShowsWithActor(showTree, "Bob Newhart");
+    printShowsWithActor(showTree, "Jerry Seinfeld");
+    printShowsWithActor(showTree, "Bob Denver");
 
-    cout << "All actors in The Prisoner" << endl;
-    showTree.printActorsInShow(showTree.head, "The Prisoner");
-
-    cout << "All actors in Gilligan's Island" << endl;
-    showTree.printActorsInShow(showTree.head, "Gilligan's Island");
-
-    cout << "All actors in Parry M*A*S*H" << endl;
-    showTree.printActorsInShow(showTree.head, "M*A*S*H");
-
-    cout << "All Shows with Raymond Burr" << endl;
-    showTree.printShowsWithActor(showTree.head, "Raymond Burr");
-
-    //TODO: Handle duplicate cases
-    cout << "All Shows with Bill Mumy" << endl;
-    showTree.printShowsWithActor(showTree.head, "Bill Mumy");
-
-    //TODO: The name has whitespace at the end
-    cout << "All Shows with Bob Newhart" << endl;
-    showTree.printShowsWithActor(showTree.head, "Bob Newhart");
-
-    cout << "All Shows with Jerry Seinfeld" << endl;
-    showTree.printShowsWithActor(showTree.head, "Jerry Seinfeld");
-
-    //TODO: Also doesn't appear when he should
-    cout << "All Shows with Bob Denver" << endl;
-    showTree.printShowsWithActor(showTree.head, "Bob Denver");
-
-    showTree.deleteTree(showTree.head);
+    showTree.deleteTree();
 }
 
 BSTree readFile(string filepath)
@@ -94,11 +77,11 @@ BSTree readFile(string filepath)
         //make new show for each 
         Show newShow = Show();
 
-        // Skip empty lines
+        //skip empty lines
         while(curLine == "") 
         {
             if(!getline(infile, curLine)) {
-                // Exit loop if end of file is reached
+                //exit loop if end of file is reached
                 break;
             }
         }
@@ -130,24 +113,14 @@ BSTree readFile(string filepath)
         }
 
         //handle duplicates
-        if(!showTree.isInTree(showTree.head, newShow.name))
+        if(!showTree.isInTree(newShow.name))
         {
-            showTree.insertNode(showTree.head, newShow);
+            showTree.insertNode(newShow);
         }
 
         else
         {
-            //delete any allocated memory from linked list in duplicate show
-            NodePtr p = newShow.actorHead;
-            NodePtr q = p;
-
-            while(p != NULL)
-            {
-                p = p -> next;
-                q -> next = NULL;
-                delete q;
-                q = p;
-            }
+            deleteActorList(newShow.actorHead);
         }
     }
 
@@ -252,4 +225,31 @@ void insertActor(NodePtr &head, string actorName)
     n -> next = head;
 
     head = n;
+}
+
+void deleteActorList(NodePtr &head)
+{
+    //delete linked list of actors
+    NodePtr p = head;
+    NodePtr q = p;
+
+    while(p != NULL)
+    {
+        p = p -> next;
+        q -> next = NULL;
+        delete q;
+        q = p;
+    }
+}
+
+void printActorsInShow(BSTree showTree, string showName)
+{
+    cout << "All actors in " << showName << endl;
+    showTree.printActorsInShow(showName);
+}
+
+void printShowsWithActor(BSTree showTree, string actorName)
+{
+    cout << "All Shows with " << actorName << endl;
+    showTree.printShowsWithActor(actorName);
 }

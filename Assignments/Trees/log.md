@@ -11,3 +11,9 @@
 11:30 AM - Started working on the actual project code
 1:06 PM - I got most of it working, but the actors don't seem to want to work very well. It's really odd. I also should decouple a lot of my functions from the data structure
 1:13 PM - It doesn't work well because there is whitespace around a lot of the names. I need to make something that removes whitespace from the end of a string
+
+10:00 PM - Started working on whitespace removal and duplicate removal
+10:30 PM - Done! I think the assignment is finished.
+
+## April 15, 2024
+9:00 AM - Added function overloads to the implementation file so that the showDB.cpp code is prettier.

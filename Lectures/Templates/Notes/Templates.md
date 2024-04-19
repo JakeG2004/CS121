@@ -102,6 +102,8 @@ The name of a class template followed by a type, bracketed by < >, is the name o
 
     String<Jchar> js;
 
+[Reference Code](../Code/llT.h)
+
 ## STL - Brief Overview
 The Standard Template Library (STL) is a library of standard class and function templates. The STL contains 6 kinds of components.
 - Containers

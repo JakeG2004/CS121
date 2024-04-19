@@ -66,4 +66,6 @@ The hash function given by `h(x) = x % 7`. The table has seven locations. Insert
 6. h(12) = 5, so key 12 would be stored in T[5]
 7. h(18) = 4, so key 18 would be stored in T[4]
 
-**Example code is given in `hash.h` and `hash.cpp`**
+[Implementation Code](hash.cpp)
+
+[Header Code](hash.h)

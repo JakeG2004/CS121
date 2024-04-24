@@ -43,3 +43,43 @@ Euler proved that the problem has **no** solution.
 *Rooted Graph*: Has a unique node, the *root* such that there is a path from the root to all nodes within the graph.
 
 *Free tree*: Connected, undirected graph with no cycles. Trees cannot have cycles.
+
+## State Space Representation of Problems
+The nodes of a graph correspond to partial problem solution *states* and the edges correspond to steps in a problem solving process. One or more *initial states*, corresponding to the given information in a problem instance, form the root of the graph. The graph also degines one or more *goal* conditions, which are solutions to the problem. *State space search* characterizes problem solving as the process of finding a *solution path* from the start state to a goal state.
+
+Game trees and shortes path problems are two examples that are frequently solved using a state space representation.
+
+## Adjacency Matrix
+An **adjacency matrix** is a square grid of true / false values that represent the edges of a graph. If the graph contains *n* vertices, then the grid contains *n* rows and *n* columns. For the two vertex numbers *i* and *j*, the component at row *i* and column *j* is true if there is an edge from vertex *i* to vertex *j*; otherwise the component is false.
+
+        A | B | C | D | E
+    A   1   0   0   1   0
+    B   0   1   1   0   0
+    C   0   1   0   1   0
+    D   1   0   1   1   0
+    E   0   0   0   0   1
+
+**NOTE: THIS MATRIX IS SYMMETRIC AKA IT IS = ITS TRANSPOSE**
+
+## Edge lists
+A directed graph with *n* vertices can be represented by *n* difference linked lists. List number *i* provides the connection for vertex *i*. Specifically, for each entry  *j* in list number *i*, there is an edge from *i* to *j*.
+
+    Example for the matrix above:
+
+    A -> A -> D
+    B -> B -> C
+    C -> B -> D
+    D -> A -> C -> D
+    E -> E
+
+The lists could be linked together.
+
+    A -> A -> D
+    V
+    B -> B -> C
+    V
+    C -> B -> D
+    V
+    D -> A -> C -> D
+    V
+    E -> E

@@ -66,7 +66,7 @@ void insertionSort(int arr[], int nA)
     }
 }
 
-//finds smallest element, moves it to frontt
+//finds smallest element, moves it to front
 void selectionSort(int arr[], int nA)
 {
     int smallestIndex;

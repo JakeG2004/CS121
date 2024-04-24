@@ -15,7 +15,7 @@
 Iterate through the array examining adjacent pairs of elements. If necessary, swap them to put them in the desired order (*Brick sort*).
 
 ### Insertion Sort
-Iterate through the array placing the *i*th element with respect to the *i* - 1 previous elements.
+Iterate through the array placing the *i*th element with respect to the *i* - 1 previous elements. It places each element in the sorted *i* - 1 elements using a technique similar to bubble sort.
 
 ### Selection Sort
 Iterate through the array putting the *i*th smallest elementh in the *i*th location.

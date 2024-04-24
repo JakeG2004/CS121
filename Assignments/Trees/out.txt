@@ -1,0 +1,172 @@
+./a.out
+Usage: ./a.out <path_to_datafile>. Exiting program...
+
+./a.out lists/large.dat
+All show titles in the tree:
+ | 3rd Rock from the Sun
+ | Alfred Hitchcock Presents
+ | All in the Family
+ | American Dad!
+ | Animaniacs
+ | Babylon 5
+ | Banacek
+ | Batman
+ | Battlestar Galactica
+ | Benson
+ | Bewitched
+ | Burke's Law
+ | CHiPs
+ | Charlie's Angels
+ | Chicago Hope
+ | Coach
+ | Criminal Minds
+ | Dexter's Laboratory
+ | ER
+ | Evening Shade
+ | F Troop
+ | Family Ties
+ | Futurama
+ | Gidget
+ | Gilligan's Island
+ | Gomer Pyle: USMC
+ | Happy Days
+ | Hawaii Five-0
+ | Herman's Head
+ | Hogan's Heroes
+ | I Dream of Jeannie
+ | I Love Lucy
+ | Ironside
+ | JAG
+ | Jake and the Fatman
+ | Kojak
+ | Kung Fu: The Legend Continues
+ | Lassie
+ | Law & Order
+ | Leave It to Beaver
+ | Little House on the Prairie
+ | Lost
+ | Lost in Space
+ | M*A*S*H
+ | MacGyver
+ | Make Room for Daddy
+ | Mannix
+ | Marcus Welby, M.D.
+ | Married with Children
+ | Mary Tyler Moore
+ | Matlock
+ | McCloud
+ | McHale's Navy
+ | Mister Ed
+ | Mod Squad
+ | Mork & Mindy
+ | Mr. Lucky
+ | Murder, She Wrote
+ | My Three Sons
+ | NCIS
+ | NCIS: Los Angeles
+ | NCIS: New Orleans
+ | Newhart
+ | Night Court
+ | Northern Exposure
+ | Perry Mason
+ | Quantum Leap
+ | Rawhide
+ | Riptide
+ | Room 222
+ | Scarecrow and Mrs. King
+ | Seinfeld
+ | St. Elsewhere
+ | Star Trek
+ | Star Trek: Deep Space Nine
+ | Star Trek: Enterprise
+ | Star Trek: The Next Generation
+ | Star Trek: Voyager
+ | Taxi
+ | The A-Team
+ | The Adventures of Ozzie & Harriet
+ | The Andy Griffith Show
+ | The Beverly Hillbillies
+ | The Big Valley
+ | The Bob Newhart Show
+ | The Bullwinkle Show
+ | The Carol Burnett Show
+ | The Cosby Show
+ | The Fall Guy
+ | The Flying Nun
+ | The Fugitive
+ | The Honeymooners
+ | The Invaders
+ | The Jack Benny Program
+ | The Jeffersons
+ | The Lucy Show
+ | The Man from U.N.C.L.E.
+ | The Many Loves of Dobie Gillis
+ | The Odd Couple
+ | The Office
+ | The Phil Silvers Show
+ | The Prisoner
+ | The Saint
+ | The Simpsons
+ | The Six Million Dollar Man
+ | The Streets of San Francisco
+ | The Twilight Zone
+ | The Wild Wild West
+ | The X-Files
+ | Topper
+ | Voyage to the Bottom of the Sea
+ | WKRP in Cincinnati
+ | Walker, Texas Ranger
+ | Wonder Woman
+
+All actors in Perry Mason
+ | William Talman
+ | Ray Collin
+ | William Hopper
+ | Barbara Hale
+ | Raymond Burr
+
+All actors in The Prisoner
+ | Leo McKern
+ | Peter Swanwick
+ | Angelo Muscat
+ | Patrick McGoohan
+
+All actors in Gilligan's Island
+ | Dawn Wells
+ | Russell Johnson
+ | Tina Louise
+ | Natalie Schafer
+ | Jim Backus
+ | Alan Hale Jr.
+ | Bob Denver
+
+All actors in M*A*S*H
+ | Larry Linville
+ | David Ogden Stiers
+ | Gary Burghoff
+ | Kellye Nakahara
+ | Mike Farrell
+ | Harry Morgan
+ | William Christopher
+ | Jamie Farr
+ | Loretta Swit
+ | Alan Alda
+
+All Shows with Raymond Burr
+ | Ironside
+ | Perry Mason
+
+All Shows with Bill Mumy
+ | Babylon 5
+ | Lost in Space
+
+All Shows with Bob Newhart
+ | Newhart
+ | The Bob Newhart Show
+
+All Shows with Jerry Seinfeld
+ | Seinfeld
+
+All Shows with Bob Denver
+ | Gilligan's Island
+ | The Many Loves of Dobie Gillis

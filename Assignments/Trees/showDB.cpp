@@ -1,9 +1,11 @@
-/*
-showDB.cpp
-A file to read in shows from large.dat and store them in a tree
-Jake Gendreau
-April 13, 2024
-*/
+/* showDB.cpp
+ *
+ * CS 121.Bolden...gcc 11.4.0...Jake Gendreau
+ * 04/24/24 ...Core i9 13900H POP!_os 22.04 ...gend0188@vandals.uidaho.edu
+ *
+ * A program to store info about shows in a tree
+ *---------------------------------------------------------
+ */
 
 #include <iostream>
 #include <fstream>
@@ -29,7 +31,7 @@ int main(int argc, char* argv[])
 {
     if(argc != 2)
     {
-        cout << "Incorrect usage! Usage: ./a.out <path_to_datafile>. Exiting program..." << endl;
+        cout << "Usage: ./a.out <path_to_datafile>. Exiting program..." << endl;
         exit(-1);
     }
 

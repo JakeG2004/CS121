@@ -59,7 +59,7 @@ void BSTree::printShows(BSTreeNodePtr n)
     if(n != NULL)
     {
         printShows(n -> left);
-        cout << "\t" << n -> data.name << endl;
+        cout << " | " << n -> data.name << endl;
         printShows(n -> right);
     }
 }
@@ -67,6 +67,7 @@ void BSTree::printShows(BSTreeNodePtr n)
 void BSTree::printShows()
 {
     printShows(head);
+    cout << endl;
 }
 
 void BSTree::printActorsInShow(BSTreeNodePtr n, string showName)
@@ -84,7 +85,7 @@ void BSTree::printActorsInShow(BSTreeNodePtr n, string showName)
         //print out the actors in the show
         while(p != NULL)
         {
-            cout << "\t" << p -> data << endl;
+            cout << " | " << p -> data << endl;
             p = p -> next;
         }
     }
@@ -105,6 +106,7 @@ void BSTree::printActorsInShow(BSTreeNodePtr n, string showName)
 void BSTree::printActorsInShow(string showName)
 {
     printActorsInShow(head, showName);
+    cout << endl;
 }
 
 void BSTree::printShowsWithActor(BSTreeNodePtr n, string actorName)
@@ -124,7 +126,7 @@ void BSTree::printShowsWithActor(BSTreeNodePtr n, string actorName)
         //if actor is found, print the name of the show
         if(p -> data == actorName)
         {
-            cout << "\t" << n -> data.name << endl;
+            cout << " | " << n -> data.name << endl;
         }
 
         p = p -> next;
@@ -141,6 +143,7 @@ void BSTree::printShowsWithActor(BSTreeNodePtr n, string actorName)
 void BSTree::printShowsWithActor(string actorName)
 {
     printShowsWithActor(head, actorName);
+    cout << endl;
 }
 
 void BSTree::printShowsReleasedBetween(BSTreeNodePtr n, int start, int end)
@@ -148,20 +151,20 @@ void BSTree::printShowsReleasedBetween(BSTreeNodePtr n, int start, int end)
     //error check
     if(n == NULL)
     {
-        cout << "ERROR: printShowsReleasedBetween() ON EMPTY TREE. EXITING PROGRAM..." << endl;
+        cout << "ERROR: printShowsReleasedBetween() ON EMPTY TREE. EXITING PROGRAM" << endl;
         exit(-1);
     }
 
     //handle started in given period
     if(n -> data.startDate >= start && n -> data.startDate <= end)
     {
-        cout << "\t" << n -> data.name << endl;
+        cout << " | " << n -> data.name << endl;
     }
 
     //handle ended in given period
     else if(n -> data.endDate >= start && n -> data.endDate <= end)
     {
-        cout << "\t" << n -> data.name << endl;
+        cout << " | " << n -> data.name << endl;
     }
 
     //go to child nodes
@@ -175,6 +178,7 @@ void BSTree::printShowsReleasedBetween(BSTreeNodePtr n, int start, int end)
 void BSTree::printShowsReleasedBetween(int start, int end)
 {
     printShowsReleasedBetween(head, start, end);
+    cout << endl;
 }
 
 void BSTree::deleteTree(BSTreeNodePtr n)

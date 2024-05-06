@@ -7,11 +7,14 @@ int main()
 {
     BST tree = BST();
 
-    tree.insertNode(1);
-    tree.insertNode(0);
-    tree.insertNode(10);
+    for(int i = 2; i <= 8; i++)
+    {
+        tree.insertNode(i * 10);
+    }
 
     tree.printInOrder();
+
+    tree.deleteNode(20);
 
     tree.deleteTree();
 }

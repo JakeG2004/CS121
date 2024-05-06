@@ -67,3 +67,76 @@ void BST::printInOrder(BSTreeNodePtr n)
         printInOrder(n -> right);
     }
 }
+
+int BST::getNumChildren(BSTreeNodePtr n)
+{
+    int numChildren = 0;
+
+    if(n -> left != NULL)
+        numChildren++;
+
+    if(n -> right != NULL)
+        numChildren++;
+
+    return numChildren;
+}
+
+void BST::deleteNode(int key)
+{
+    if(head == NULL)
+    {
+        cout << "deleting node on empty tree" << endl;
+        exit(-1);
+    }
+
+    BSTreeNodePtr nodeToDelete = head;
+
+    //find the node with the matching key
+    while(nodeToDelete -> data != key)
+    {
+        if(key <= nodeToDelete -> data)
+        {
+            nodeToDelete = nodeToDelete -> left;
+        }
+
+        if(key > nodeToDelete -> data)
+        {
+            nodeToDelete = nodeToDelete -> right;
+        }
+
+        if(nodeToDelete == NULL)
+        {
+            cout << "Value not in tree" << endl;
+            exit(-1);
+        }
+    }
+
+    //handle leaf case
+    if(getNumChildren(nodeToDelete) == 0)
+    {
+        delete nodeToDelete;
+        nodeToDelete = NULL;
+        cout << "Deleting leaf" << endl;
+        return;
+    }
+
+    //handle 1 child
+    else if(getNumChildren(nodeToDelete) == 1)
+    {
+        cout << "Deleting one child" << endl;
+        BSTreeNodePtr p = nodeToDelete;
+        if(nodeToDelete -> left != NULL)
+        {
+            nodeToDelete -> left = nodeToDelete -> left -> left;
+            nodeToDelete -> right = nodeToDelete -> right -> right;
+        }
+
+        else if(nodeToDelete -> right != NULL)
+        {
+            nodeToDelete = nodeToDelete -> right;
+        }
+
+        delete p;
+        return;
+    }
+}

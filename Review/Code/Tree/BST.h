@@ -38,4 +38,8 @@ class BST
         void insertNode(int);
 
         void printInOrder();
+
+        void deleteNode(int);
+
+        int getNumChildren(BSTreeNodePtr);
 };

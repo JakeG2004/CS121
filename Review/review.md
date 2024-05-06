@@ -16,18 +16,18 @@
         - BFS
         - DFS
 - Programming
-    - **Recursion**
+    - [**Recursion**](Notes/recursion.md)
     - Functions (2)
-    - Classes
+    - [Classes](Notes/classes.md)
         - Declaration
         - Definition
-    - Linked Lists, Stacks, Queues
+    - [Linked Lists, Stacks, Queues](Notes/dataStructures.md)
     - Trees, trees, and more trees
-        - Traversals
+        - [Traversals](Notes/treeTraversals.md)
             - In-order
             - Post-order
             - Pre-order
-        - Binary Search Trees
-        - Other trees
+        - [Binary Search Trees](Notes/BST.md)
+        - [Other trees](Notes/otherTrees.md)
             - AVL tree
             - Red-Black tree

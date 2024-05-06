@@ -4,7 +4,7 @@ Merge sort is a sorting algorithm that follows the divide and conquer approach. 
 In simple terms, we can say that the process of merge sort is to divide the array into two halves, sort each half, then merge the sorted halves back together. This process is repeated until the entire array is sorted.
 
 ## How does merge sort work?
-1. Divide the list or array recursively into two halves until it can no more divided
+1. Divide the list or array recursively into two halves until it can be divided no more
 2. Each subarray is sorted individually using the merge sort algorithm
 3. The sorted subarrays are merged back together in sorted order. The process continues until all elements from both subarrays have been merged.
 

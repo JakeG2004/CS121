@@ -1,5 +1,5 @@
 # Selection Sort
-Selection sort is a sorting algorithm that works by repeatedly selecting the smallest (or largest) element from the unosrted portion of the list and moving it to the sorted portion of the list
+Selection sort is a sorting algorithm that works by repeatedly selecting the smallest (or largest) element from the unsorted portion of the list and moving it to the sorted portion of the list
 
 ## Reference code
 

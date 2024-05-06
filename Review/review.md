@@ -12,7 +12,7 @@
         - [Quick sort](Notes/quickSort.md)
 - **Graphs**
     - Construction
-    - [Traversal](Notes/trarversals.md)
+    - [Traversal](Notes/traversals.md)
         - BFS
         - DFS
 - Programming
@@ -31,3 +31,6 @@
         - [Other trees](Notes/otherTrees.md)
             - AVL tree
             - Red-Black tree
+
+## Practice code:
+- [Hashing](Code/hashing.cpp)

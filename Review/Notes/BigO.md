@@ -1,6 +1,6 @@
-# Big-Oh(O(N))
+# Big-Oh  (O(N))
 ## What is Big Oh?
-Big oh notation is a mathematical contation that describes the limiting behavior of a function when the argument tends towards a particular value or infinity.
+Big oh notation is a mathematical notation that describes the limiting behavior of a function when the argument tends towards a particular value or infinity.
 
 In other words, it measures, in general, how long a function will take to run. (Time complexity)
 
@@ -17,8 +17,11 @@ In big-oh notation, we count
 - Unsorted array: $N$
 - Sorted array: $log(N)$, if using binary search, $N$ otherwise.
 
+### Hash tables
+- Lookup time of O(1)
+
 ### Trees
 - Binary search tree: $log(N)$
-- AVL tree: #log(N)$
-- Red-Black Tree: #log(N)$
+- AVL tree: $log(N)$
+- Red-Black Tree: $log(N)$
 

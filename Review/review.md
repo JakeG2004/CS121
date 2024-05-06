@@ -1,0 +1,33 @@
+# CS121 Final Review
+## Topics:
+- Basic concepts (True / False)
+- [**Big O**](Notes/BigO.md)
+- Data structures concepts
+    - Short answer
+    - [**Hashing**](Notes/hashing.md)
+    - [**Heaps**](Notes/heaps.md)
+    - **Sorting / Searching**
+        - [Selection sort](Notes/selectSort.md)
+        - [Merge sort](Notes/mergeSort.md)
+        - [Quick sort](Notes/quickSort.md)
+- **Graphs**
+    - Construction
+    - [Traversal](Notes/trarversals.md)
+        - BFS
+        - DFS
+- Programming
+    - **Recursion**
+    - Functions (2)
+    - Classes
+        - Declaration
+        - Definition
+    - Linked Lists, Stacks, Queues
+    - Trees, trees, and more trees
+        - Traversals
+            - In-order
+            - Post-order
+            - Pre-order
+        - Binary Search Trees
+        - Other trees
+            - AVL tree
+            - Red-Black tree

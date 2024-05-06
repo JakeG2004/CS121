@@ -1,4 +1,4 @@
-# HASH TABLES
+# Hash tables
 Searching for an element in a tree can be very fast, but slows down as number of items increases (at best, O(log n)).
 
 **Why?**
@@ -11,7 +11,7 @@ Searching for an element in a tree can be very fast, but slows down as number of
 
 Need / want some sort of conversation scheme to use an array.
 
-## HASHING
+## Hashing
 A **Hash Function** transforms keys into an array index.
 
 One possible implementation is to sum the ASCII values of each char in a string and *mod* it by the table size. For example, an array with 120 elements and the string JONES:
